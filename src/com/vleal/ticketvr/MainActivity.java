@@ -10,30 +10,20 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements
 	ActionBar.TabListener {
 
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
 
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
 	ViewPager mViewPager;
 
 	@Override
@@ -41,7 +31,6 @@ public class MainActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -50,9 +39,7 @@ public class MainActivity extends FragmentActivity implements
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
-		// When swiping between different sections, select the corresponding
-		// tab. We can also use ActionBar.Tab#select() to do this if we have
-		// a reference to the Tab.
+
 		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
 			public void onPageSelected(int position) {
@@ -77,8 +64,6 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
 		FragmentTransaction fragmentTransaction) {
-		// When the given tab is selected, switch to the corresponding page in
-		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
 	}
 
@@ -92,10 +77,7 @@ public class MainActivity extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 	}
 
-	/**
-	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-	 * one of the sections/tabs/pages.
-	 */
+
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm) {
@@ -109,6 +91,7 @@ public class MainActivity extends FragmentActivity implements
 				Bundle args = new Bundle();
 				fragment.setArguments(args);
 				return fragment;
+				
 			} else {
 				Fragment fragment = new CheckBalanceSectionFragment();
 				Bundle args = new Bundle();
@@ -137,45 +120,62 @@ public class MainActivity extends FragmentActivity implements
 	}
 	
 	public static class CheckBalanceSectionFragment extends Fragment {
-		public CheckBalanceSectionFragment() {
-		}
+		public CheckBalanceSectionFragment() {}
 
 		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_check_balance,
-					container, false);
-			//TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-			//dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_check_balance, container, false);
+			
 			return rootView;
+		}
+		
+		@Override
+		public void onViewCreated(View view, Bundle savedInstanceState) {
+			EditText cardNumber       = (EditText) view.findViewById(R.id.cardNumber);
+			final Button checkBalance = (Button)   view.findViewById(R.id.checkButton);
+			
+			cardNumber.addTextChangedListener(new TextWatcher(){
+				@Override
+		        public void onTextChanged(CharSequence s, int start, int before, int count) {
+					Log.i("start", "" + start);
+					Log.i("s", "" + s);
+					
+					if (start == 11) {
+						checkBalance.setEnabled(true);
+						
+					} else {
+						checkBalance.setEnabled(false);
+					}
+		        }
+				
+				@Override
+				public void afterTextChanged(Editable arg0) {
+					Log.i("editabel", ""+arg0);	
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+		    });
+			
+			super.onViewCreated(view, savedInstanceState);
 		}
 	}
 	
 	public void checkMyBalance(View view) {
-		EditText cardFiled = (EditText) findViewById(R.id.cardNumber);
-		String cardNumber = cardFiled.getText().toString();
+		EditText cardField  = (EditText) findViewById(R.id.cardNumber); 
+		String cardNumber   = cardField.getText().toString();
 		
-		if (cardNumber.length() < 12) {
-			Toast toast = Toast.makeText(this, "Nœmero de cart‹o inv‡lido", Toast.LENGTH_SHORT);
-			toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
-			toast.show();
-		} else {
-			Log.i("click", cardNumber);
-		}
+		Log.i("Click", cardNumber);
 	}
 	
 	public static class AddCardSectionFragment extends Fragment {
-		public AddCardSectionFragment() {
-		}
+		public AddCardSectionFragment() {}
 		
 		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_addcard,
-					container, false);
+		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_addcard, container, false);
 			
 			return rootView;
-			
 		}
 	}
 

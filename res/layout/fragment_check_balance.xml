@@ -9,7 +9,7 @@
     tools:context=".MainActivity$DummySectionFragment" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/cardLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/cardNumber"
@@ -21,10 +21,9 @@
         android:id="@+id/cardNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addButton"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="17dp"
+        android:layout_alignLeft="@+id/checkButton"
+        android:layout_alignRight="@+id/checkButton"
+        android:layout_below="@+id/cardLabel"
         android:ems="10"
         android:inputType="number"
         android:maxLength="12"
@@ -32,15 +31,16 @@
     </EditText>
 
     <Button
-        android:id="@+id/addButton"
-        style="@style/Button.Red"
+        android:id="@+id/checkButton"
+        style="@style/Button.Main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/cardNumber"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="28dp"
+        android:onClick="checkMyBalance"
         android:text="@string/check_balance"
-        android:onClick="checkMyBalance"/>
+        android:enabled="false" />
 
 </RelativeLayout>

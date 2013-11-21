@@ -8,18 +8,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity$DummySectionFragment" >
 
-    <EditText
-        android:id="@+id/editText1"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/cardNumber"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/addButton"
-        android:layout_marginTop="23dp"
-        android:ems="10"
-        android:inputType="numberSigned" >
+        android:layout_alignRight="@+id/cardNumber"
+        android:text="@string/card_label" />
 
-        <requestFocus />
+    <EditText
+        android:id="@+id/cardNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/addButton"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="12"
+        android:singleLine="true" >
     </EditText>
 
     <Button
@@ -29,16 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="42dp"
-        android:text="@string/check_balance" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignParentTop="true"
-        android:text="@string/card_label" />
+        android:layout_below="@+id/cardNumber"
+        android:layout_marginTop="14dp"
+        android:text="@string/check_balance"
+        android:onClick="checkMyBalance"/>
 
 </RelativeLayout>

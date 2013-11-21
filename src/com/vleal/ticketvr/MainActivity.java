@@ -10,9 +10,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements
 	ActionBar.TabListener {
@@ -131,18 +135,8 @@ public class MainActivity extends FragmentActivity implements
 			return null;
 		}
 	}
-
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
+	
 	public static class CheckBalanceSectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-
 		public CheckBalanceSectionFragment() {
 		}
 
@@ -154,6 +148,19 @@ public class MainActivity extends FragmentActivity implements
 			//TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
 			//dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
 			return rootView;
+		}
+	}
+	
+	public void checkMyBalance(View view) {
+		EditText cardFiled = (EditText) findViewById(R.id.cardNumber);
+		String cardNumber = cardFiled.getText().toString();
+		
+		if (cardNumber.length() < 12) {
+			Toast toast = Toast.makeText(this, "Nœmero de cart‹o inv‡lido", Toast.LENGTH_SHORT);
+			toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
+			toast.show();
+		} else {
+			Log.i("click", cardNumber);
 		}
 	}
 	
@@ -170,7 +177,6 @@ public class MainActivity extends FragmentActivity implements
 			return rootView;
 			
 		}
-		
 	}
 
 }

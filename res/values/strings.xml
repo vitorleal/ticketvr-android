@@ -7,4 +7,5 @@
     <string name="no_save">Ver saldo sem salvar</string>
     <string name="add_card">Adicionar cartão</string>
 	<string name="check_balance">Verificar saldo</string>
+	<string name="card_label">Número do cartão</string>
 </resources>

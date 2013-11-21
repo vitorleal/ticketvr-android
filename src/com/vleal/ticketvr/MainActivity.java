@@ -13,7 +13,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements
 	ActionBar.TabListener {
@@ -101,11 +100,18 @@ public class MainActivity extends FragmentActivity implements
 
 		@Override
 		public Fragment getItem(int position) {
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
+			if (position == 0) {
+				Fragment fragment = new AddCardSectionFragment();
+				Bundle args = new Bundle();
+				fragment.setArguments(args);
+				return fragment;
+			} else {
+				Fragment fragment = new CheckBalanceSectionFragment();
+				Bundle args = new Bundle();
+				//args.putInt(CheckBalanceSectionFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment.setArguments(args);
+				return fragment;
+			}
 		}
 
 		@Override
@@ -130,27 +136,41 @@ public class MainActivity extends FragmentActivity implements
 	 * A dummy fragment representing a section of the app, but that simply
 	 * displays dummy text.
 	 */
-	public static class DummySectionFragment extends Fragment {
+	public static class CheckBalanceSectionFragment extends Fragment {
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
 		public static final String ARG_SECTION_NUMBER = "section_number";
 
-		public DummySectionFragment() {
+		public CheckBalanceSectionFragment() {
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
+			View rootView = inflater.inflate(R.layout.fragment_check_balance,
 					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			//TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
+			//dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
 			return rootView;
 		}
+	}
+	
+	public static class AddCardSectionFragment extends Fragment {
+		public AddCardSectionFragment() {
+		}
+		
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_addcard,
+					container, false);
+			
+			return rootView;
+			
+		}
+		
 	}
 
 }

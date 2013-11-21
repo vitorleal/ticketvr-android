@@ -12,7 +12,9 @@ public final class R {
     }
     public static final class color {
         public static final int default_ticketvr_color=0x7f040001;
+        public static final int main_red=0x7f040002;
         public static final int pressed_ticketvr=0x7f040000;
+        public static final int white=0x7f040003;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -60,7 +62,9 @@ public final class R {
         public static final int tab_unselected_ticketvr=0x7f020020;
     }
     public static final class id {
-        public static final int action_settings=0x7f090002;
+        public static final int action_settings=0x7f090004;
+        public static final int addButton=0x7f090003;
+        public static final int listView1=0x7f090002;
         public static final int pager=0x7f090000;
         public static final int section_label=0x7f090001;
     }
@@ -73,15 +77,17 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
+        public static final int add_card=0x7f060004;
         public static final int app_name=0x7f060000;
+        public static final int check_balance=0x7f060005;
         public static final int my_cards=0x7f060002;
         public static final int no_save=0x7f060003;
     }
     public static final class style {
         public static final int ActionBar_Solid_Ticketvr=0x7f070003;
-        public static final int ActionBar_Transparent_Ticketvr=0x7f070004;
-        public static final int ActionBarTabStyle_Ticketvr=0x7f070007;
-        public static final int ActionButton_CloseMode_Ticketvr=0x7f07000a;
+        public static final int ActionBar_Transparent_Ticketvr=0x7f070005;
+        public static final int ActionBarTabStyle_Ticketvr=0x7f070008;
+        public static final int ActionButton_CloseMode_Ticketvr=0x7f07000b;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -108,13 +114,14 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
-        public static final int DropDownListView_Ticketvr=0x7f070006;
-        public static final int DropDownNav_Ticketvr=0x7f070008;
-        public static final int PopupMenu_Ticketvr=0x7f070005;
-        public static final int ProgressBar_Ticketvr=0x7f070009;
+        public static final int Button_Red=0x7f070004;
+        public static final int DropDownListView_Ticketvr=0x7f070007;
+        public static final int DropDownNav_Ticketvr=0x7f070009;
+        public static final int PopupMenu_Ticketvr=0x7f070006;
+        public static final int ProgressBar_Ticketvr=0x7f07000a;
         public static final int Theme_Ticketvr=0x7f070002;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Ticketvr_Widget=0x7f07000b;
+        public static final int Theme_Ticketvr_Widget=0x7f07000c;
     }
 }

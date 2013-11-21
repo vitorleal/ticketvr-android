@@ -38,6 +38,11 @@
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_ticketvr</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Ticketvr</item>
     </style>
+    
+    <style name="Button.Red" parent="@android:style/Theme.Holo.Light">
+        <item name="android:background">@color/main_red</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
     <style name="ActionBar.Transparent.Ticketvr" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@drawable/ab_transparent_ticketvr</item>

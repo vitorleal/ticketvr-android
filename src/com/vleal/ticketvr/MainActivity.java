@@ -193,6 +193,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 						
 						intent.putExtras(bundle);
 					    startActivity(intent);	
+					    //overridePendingTransition(R.anim.hold, R.anim.fade_in);
 						
 					} else {
 						showToast((String) json.get("error"));

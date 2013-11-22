@@ -39,7 +39,7 @@ public class ResultActivity extends Activity {
 			if (scheduling != null && scheduling.length() > 0) {
 				JSONObject schedualJson = (JSONObject) scheduling.get(0);
 				String schedualDate     = (String) schedualJson.get("date");
-				String description      = (String) schedualJson.get("description");
+				String schedualdesc     = (String) schedualJson.get("description");
 				String schedualValue    = (String) schedualJson.get("value");
 				
 				FrameLayout greenBox    = (FrameLayout) findViewById(R.id.greenBox);
@@ -48,7 +48,7 @@ public class ResultActivity extends Activity {
 				TextView valueDesposit  = (TextView) findViewById(R.id.valueDeposit);
 				
 				nextDeposit.setText("Pr—ximo dep—sito: "+ schedualDate);
-				descDesdposit.setText(description);
+				descDesdposit.setText(schedualdesc);
 				valueDesposit.setText("R$ "+ schedualValue);
 				greenBox.setVisibility(View.VISIBLE);
 			}

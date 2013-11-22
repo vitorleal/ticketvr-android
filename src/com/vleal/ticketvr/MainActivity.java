@@ -4,7 +4,8 @@ import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.graphics.Color;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -13,12 +14,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class MainActivity extends FragmentActivity implements
 	ActionBar.TabListener {
@@ -138,10 +141,7 @@ public class MainActivity extends FragmentActivity implements
 			cardNumber.addTextChangedListener(new TextWatcher(){
 				@Override
 		        public void onTextChanged(CharSequence s, int start, int before, int count) {
-					Log.i("start", "" + start);
-					Log.i("s", "" + s);
-					
-					if (start == 11) {
+					if (s.length() == 16) {
 						checkBalance.setEnabled(true);
 						
 					} else {
@@ -150,9 +150,7 @@ public class MainActivity extends FragmentActivity implements
 		        }
 				
 				@Override
-				public void afterTextChanged(Editable arg0) {
-					Log.i("editabel", ""+arg0);	
-				}
+				public void afterTextChanged(Editable arg0) {}
 				
 				@Override
 				public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -163,11 +161,22 @@ public class MainActivity extends FragmentActivity implements
 	}
 	
 	public void checkMyBalance(View view) {
-		EditText cardField  = (EditText) findViewById(R.id.cardNumber); 
-		String cardNumber   = cardField.getText().toString();
+		EditText cardField          = (EditText) findViewById(R.id.cardNumber); 
+		String cardNumber           = cardField.getText().toString();
+		final ProgressDialog dialog = showLoader(this);
 		
-		Log.i("Click", cardNumber);
+		AsyncHttpClient client = new AsyncHttpClient();
+		client.get("http://ticketvr.herokuapp.com/card/"+ cardNumber, new AsyncHttpResponseHandler() {
+		    @Override
+		    public void onSuccess(String response) {
+		    	if (dialog.isShowing()) {
+					dialog.dismiss();
+		        }
+		        System.out.println(response);
+		    }
+		});
 	}
+	
 	
 	public static class AddCardSectionFragment extends Fragment {
 		public AddCardSectionFragment() {}
@@ -178,6 +187,18 @@ public class MainActivity extends FragmentActivity implements
 			
 			return rootView;
 		}
+	}
+	
+	
+	//Loader
+	public ProgressDialog showLoader(Context context) {
+		ProgressDialog dialog = new ProgressDialog(context);
+    	dialog.setCancelable(false);
+    	dialog.setTitle("Verificando saldo");
+    	dialog.setMessage("carregando...");
+        dialog.show();
+        
+        return dialog;
 	}
 
 }

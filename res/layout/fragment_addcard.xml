@@ -11,6 +11,10 @@
     <Button
         android:id="@+id/addButton"
         style="@style/Button.Main"
+        android:background="@drawable/action_button"
+        android:paddingStart="60dp"
+        android:paddingEnd="60dp"
+        android:drawableStart="@drawable/ic_content_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/listView1"

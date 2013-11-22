@@ -13,5 +13,7 @@
     <string name="loader_message">carregando</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="your_balance">Seu saldo</string>
+    <string name="next_deposit">Próximo depósito</string>
 
 </resources>

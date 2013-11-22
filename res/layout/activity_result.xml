@@ -6,43 +6,73 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ResultActivity" >
+    tools:context=".ResultActivity"
+    android:layout_marginTop="20dp" >
 
-    <TextView
-        android:id="@+id/cardNumberLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/card" />
-
-    <TextView
-        android:id="@+id/cardNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cardNumberLabel"
-        android:layout_below="@+id/cardNumberLabel"
-        android:text="0000.0000.0000.0000"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/moneyValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cardNumber"
-        android:layout_below="@+id/cardNumber"
-        android:layout_marginTop="26dp"
-        android:text="R$" />
+<FrameLayout
+    android:id="@+id/frameLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:background="@drawable/balance_box_blue" >
 
     <TextView
         android:id="@+id/money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="R$ 200,00"
+        android:gravity="center"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/cardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0000.0000.0000.0000"
+        android:textSize="18sp" />
+</FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/greenBox"
+        android:background="@drawable/balance_box_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/moneyValue"
-        android:layout_alignBottom="@+id/moneyValue"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/moneyValue"
-        android:text="200,00"
-        android:textSize="20sp" />
+        android:layout_alignLeft="@+id/frameLayout1"
+        android:layout_alignRight="@+id/frameLayout1"
+        android:layout_below="@+id/frameLayout1"
+        android:layout_marginTop="24dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/nextDeposit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="@string/next_deposit" />
+
+        <TextView
+            android:id="@+id/descDeposit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="Descricao" />
+        
+        <TextView
+            android:id="@+id/valueDeposit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:gravity="center"
+            android:text="R$ 200,00"
+            android:textSize="30sp" />
+
+    </FrameLayout>
 
 </RelativeLayout>

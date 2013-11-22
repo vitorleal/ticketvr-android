@@ -1,12 +1,15 @@
 package com.vleal.ticketvr;
 
-import java.lang.reflect.Array;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class ResultActivity extends Activity {
@@ -16,15 +19,45 @@ public class ResultActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_result);
 		
-		Intent intent = getIntent();
-		String value  = intent.getStringExtra("value");
-		String number = intent.getStringExtra("number");
+		Bundle intent = getIntent().getExtras();
+		String string = intent.getString("json");
 		
-		TextView cardNumber = (TextView) findViewById(R.id.cardNumber);
-		TextView money      = (TextView) findViewById(R.id.money);
+		try {
+			JSONObject json      = new JSONObject(string);
+			JSONObject balance   = (JSONObject) json.get("balance");
+			JSONArray scheduling = (JSONArray)  json.get("scheduling");
+			
+			String value         = balance.getString("value");
+			String number        = balance.getString("number");
+			
+			TextView cardNumber  = (TextView) findViewById(R.id.cardNumber);
+			TextView money       = (TextView) findViewById(R.id.money);
+			
+			cardNumber.setText("Cart‹o: "+ number);
+			money.setText("R$ "+ value);
+			
+			if (scheduling != null && scheduling.length() > 0) {
+				JSONObject schedualJson = (JSONObject) scheduling.get(0);
+				String schedualDate     = (String) schedualJson.get("date");
+				String description      = (String) schedualJson.get("description");
+				String schedualValue    = (String) schedualJson.get("value");
+				
+				FrameLayout greenBox    = (FrameLayout) findViewById(R.id.greenBox);
+				TextView nextDeposit    = (TextView) findViewById(R.id.nextDeposit);
+				TextView descDesdposit  = (TextView) findViewById(R.id.descDeposit);
+				TextView valueDesposit  = (TextView) findViewById(R.id.valueDeposit);
+				
+				nextDeposit.setText("Pr—ximo dep—sito: "+ schedualDate);
+				descDesdposit.setText(description);
+				valueDesposit.setText("R$ "+ schedualValue);
+				greenBox.setVisibility(View.VISIBLE);
+			}
+			
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		}
 		
-		cardNumber.setText(number);
-		money.setText(value);
+		setTitle(R.string.your_balance);
 	}
 	
 	public String FormatCard(String card) {

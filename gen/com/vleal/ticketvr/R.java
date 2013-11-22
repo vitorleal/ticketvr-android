@@ -11,9 +11,15 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int blue=0x7f040008;
+        public static final int dark_blue=0x7f040007;
+        public static final int dark_green=0x7f04000a;
         public static final int dark_red=0x7f040003;
         public static final int default_ticketvr_color=0x7f040001;
+        public static final int green=0x7f04000b;
+        public static final int light_blue=0x7f040006;
         public static final int light_gray=0x7f040005;
+        public static final int light_green=0x7f040009;
         public static final int main_red=0x7f040002;
         public static final int pressed_ticketvr=0x7f040000;
         public static final int white=0x7f040004;
@@ -36,46 +42,51 @@ public final class R {
         public static final int ab_texture_tile_ticketvr=0x7f020004;
         public static final int ab_transparent_ticketvr=0x7f020005;
         public static final int action_button=0x7f020006;
-        public static final int btn_cab_done_default_ticketvr=0x7f020007;
-        public static final int btn_cab_done_focused_ticketvr=0x7f020008;
-        public static final int btn_cab_done_pressed_ticketvr=0x7f020009;
-        public static final int btn_cab_done_ticketvr=0x7f02000a;
-        public static final int cab_background_bottom_ticketvr=0x7f02000b;
-        public static final int cab_background_top_ticketvr=0x7f02000c;
-        public static final int ic_content_new=0x7f02000d;
-        public static final int ic_launcher=0x7f02000e;
-        public static final int list_focused_ticketvr=0x7f02000f;
-        public static final int menu_dropdown_panel_ticketvr=0x7f020010;
-        public static final int pressed_background_ticketvr=0x7f020011;
-        public static final int progress_bg_ticketvr=0x7f020012;
-        public static final int progress_horizontal_ticketvr=0x7f020013;
-        public static final int progress_primary_ticketvr=0x7f020014;
-        public static final int progress_secondary_ticketvr=0x7f020015;
-        public static final int selectable_background_ticketvr=0x7f020016;
-        public static final int spinner_ab_default_ticketvr=0x7f020017;
-        public static final int spinner_ab_disabled_ticketvr=0x7f020018;
-        public static final int spinner_ab_focused_ticketvr=0x7f020019;
-        public static final int spinner_ab_pressed_ticketvr=0x7f02001a;
-        public static final int spinner_background_ab_ticketvr=0x7f02001b;
-        public static final int tab_indicator_ab_ticketvr=0x7f02001c;
-        public static final int tab_selected_focused_ticketvr=0x7f02001d;
-        public static final int tab_selected_pressed_ticketvr=0x7f02001e;
-        public static final int tab_selected_ticketvr=0x7f02001f;
-        public static final int tab_unselected_focused_ticketvr=0x7f020020;
-        public static final int tab_unselected_pressed_ticketvr=0x7f020021;
-        public static final int tab_unselected_ticketvr=0x7f020022;
+        public static final int balance_box_blue=0x7f020007;
+        public static final int balance_box_green=0x7f020008;
+        public static final int btn_cab_done_default_ticketvr=0x7f020009;
+        public static final int btn_cab_done_focused_ticketvr=0x7f02000a;
+        public static final int btn_cab_done_pressed_ticketvr=0x7f02000b;
+        public static final int btn_cab_done_ticketvr=0x7f02000c;
+        public static final int cab_background_bottom_ticketvr=0x7f02000d;
+        public static final int cab_background_top_ticketvr=0x7f02000e;
+        public static final int ic_content_new=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int list_focused_ticketvr=0x7f020011;
+        public static final int menu_dropdown_panel_ticketvr=0x7f020012;
+        public static final int pressed_background_ticketvr=0x7f020013;
+        public static final int progress_bg_ticketvr=0x7f020014;
+        public static final int progress_horizontal_ticketvr=0x7f020015;
+        public static final int progress_primary_ticketvr=0x7f020016;
+        public static final int progress_secondary_ticketvr=0x7f020017;
+        public static final int selectable_background_ticketvr=0x7f020018;
+        public static final int spinner_ab_default_ticketvr=0x7f020019;
+        public static final int spinner_ab_disabled_ticketvr=0x7f02001a;
+        public static final int spinner_ab_focused_ticketvr=0x7f02001b;
+        public static final int spinner_ab_pressed_ticketvr=0x7f02001c;
+        public static final int spinner_background_ab_ticketvr=0x7f02001d;
+        public static final int tab_indicator_ab_ticketvr=0x7f02001e;
+        public static final int tab_selected_focused_ticketvr=0x7f02001f;
+        public static final int tab_selected_pressed_ticketvr=0x7f020020;
+        public static final int tab_selected_ticketvr=0x7f020021;
+        public static final int tab_unselected_focused_ticketvr=0x7f020022;
+        public static final int tab_unselected_pressed_ticketvr=0x7f020023;
+        public static final int tab_unselected_ticketvr=0x7f020024;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
-        public static final int addButton=0x7f090005;
-        public static final int cardLabel=0x7f090007;
-        public static final int cardNumber=0x7f090002;
-        public static final int cardNumberLabel=0x7f090001;
-        public static final int checkButton=0x7f090008;
-        public static final int listView1=0x7f090006;
-        public static final int money=0x7f090004;
-        public static final int moneyValue=0x7f090003;
+        public static final int action_settings=0x7f09000c;
+        public static final int addButton=0x7f090008;
+        public static final int cardLabel=0x7f09000a;
+        public static final int cardNumber=0x7f090003;
+        public static final int checkButton=0x7f09000b;
+        public static final int descDeposit=0x7f090006;
+        public static final int frameLayout1=0x7f090001;
+        public static final int greenBox=0x7f090004;
+        public static final int listView1=0x7f090009;
+        public static final int money=0x7f090002;
+        public static final int nextDeposit=0x7f090005;
         public static final int pager=0x7f090000;
+        public static final int valueDeposit=0x7f090007;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -98,8 +109,10 @@ public final class R {
         public static final int loader_message=0x7f060009;
         public static final int loader_title=0x7f060008;
         public static final int my_cards=0x7f060002;
+        public static final int next_deposit=0x7f06000d;
         public static final int no_save=0x7f060003;
         public static final int title_activity_result=0x7f06000a;
+        public static final int your_balance=0x7f06000c;
     }
     public static final class style {
         public static final int ActionBar_Solid_Ticketvr=0x7f070003;

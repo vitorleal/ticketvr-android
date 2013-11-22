@@ -1,8 +1,18 @@
 <resources>
     <color name="pressed_ticketvr">#CCE31E26</color>
     <color name="default_ticketvr_color">#111F4B</color>
+    
     <color name="main_red">#E31E26</color>
     <color name="dark_red">#AD1A20</color>
+    
     <color name="white">#ffffff</color>
     <color name="light_gray">#c8c8c8</color>
+    
+    <color name="light_blue">#E5F5FF</color>
+    <color name="dark_blue">#1E55E3</color>
+    <color name="blue">#1E8CE3</color>
+    
+    <color name="light_green">#E5FFE7</color>
+    <color name="dark_green">#48BE1B</color>
+    <color name="green">#48BE1B</color>
 </resources>

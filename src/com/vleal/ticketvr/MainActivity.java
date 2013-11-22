@@ -185,17 +185,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		    	try {
 					//if card is valid
 					if (json.has("valid")) {
-						JSONObject balance = (JSONObject) json.get("balance");
-						String value       = (String) balance.get("value");
-						String number      = (String) balance.get("number");
-						String date        = (String) balance.get("date");
-
 						Intent intent = new Intent();
 						intent.setClass(getApplicationContext(), ResultActivity.class);
-						intent.putExtra("value", value);
-						intent.putExtra("number", number);
-						intent.putExtra("date", date);
-					    startActivity(intent);		
+						
+						Bundle bundle = new Bundle();
+						bundle.putString("json", json.toString());
+						
+						intent.putExtras(bundle);
+					    startActivity(intent);	
 						
 					} else {
 						showToast((String) json.get("error"));

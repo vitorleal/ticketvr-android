@@ -27,7 +27,8 @@
         </activity>
         <activity
             android:name="com.vleal.ticketvr.ResultActivity"
-            android:label="@string/title_activity_result" >
+            android:label="@string/title_activity_result"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

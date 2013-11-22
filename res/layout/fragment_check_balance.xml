@@ -27,7 +27,9 @@
         android:ems="10"
         android:inputType="number"
         android:maxLength="16"
-        android:singleLine="true" >
+        android:singleLine="true"
+        android:text="6026514512336089" >
+
     </EditText>
 
     <Button

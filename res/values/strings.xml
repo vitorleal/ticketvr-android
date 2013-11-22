@@ -3,9 +3,15 @@
 
     <string name="app_name">TicketVR</string>
     <string name="action_settings">Settings</string>
-    <string name="my_cards">Meus cortões</string>
+    <string name="my_cards">Meus cartões</string>
     <string name="no_save">Ver saldo sem salvar</string>
     <string name="add_card">Adicionar cartão</string>
-	<string name="check_balance">Verificar saldo</string>
-	<string name="card_label">Número do cartão</string>
+    <string name="check_balance">Verificar saldo</string>
+    <string name="card_label">Número do cartão</string>
+    <string name="card">Cartão</string>
+    <string name="loader_title">Verificando saldo</string>
+    <string name="loader_message">carregando</string>
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

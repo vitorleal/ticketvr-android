@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,6 +18,10 @@ public class ResultActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		final ActionBar actionBar = getActionBar();
+		actionBar.setHomeButtonEnabled(true);
+		
 		setContentView(R.layout.activity_result);
 		
 		Bundle intent = getIntent().getExtras();
@@ -43,9 +48,9 @@ public class ResultActivity extends Activity {
 				String schedualValue    = (String) schedualJson.get("value");
 				
 				FrameLayout greenBox    = (FrameLayout) findViewById(R.id.greenBox);
-				TextView nextDeposit    = (TextView) findViewById(R.id.nextDeposit);
-				TextView descDesdposit  = (TextView) findViewById(R.id.descDeposit);
-				TextView valueDesposit  = (TextView) findViewById(R.id.valueDeposit);
+				TextView nextDeposit    = (TextView)    findViewById(R.id.nextDeposit);
+				TextView descDesdposit  = (TextView)    findViewById(R.id.descDeposit);
+				TextView valueDesposit  = (TextView)    findViewById(R.id.valueDeposit);
 				
 				nextDeposit.setText("Pr—ximo dep—sito: "+ schedualDate);
 				descDesdposit.setText(schedualdesc);

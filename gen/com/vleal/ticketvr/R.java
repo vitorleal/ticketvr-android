@@ -15,7 +15,7 @@ public final class R {
         public static final int dark_blue=0x7f040007;
         public static final int dark_green=0x7f04000a;
         public static final int dark_red=0x7f040003;
-        public static final int default_ticketvr_color=0x7f040001;
+        public static final int default_color=0x7f040001;
         public static final int green=0x7f04000b;
         public static final int light_blue=0x7f040006;
         public static final int light_gray=0x7f040005;
@@ -50,42 +50,49 @@ public final class R {
         public static final int btn_cab_done_ticketvr=0x7f02000c;
         public static final int cab_background_bottom_ticketvr=0x7f02000d;
         public static final int cab_background_top_ticketvr=0x7f02000e;
-        public static final int ic_content_new=0x7f02000f;
-        public static final int ic_launcher=0x7f020010;
-        public static final int list_focused_ticketvr=0x7f020011;
-        public static final int menu_dropdown_panel_ticketvr=0x7f020012;
-        public static final int pressed_background_ticketvr=0x7f020013;
-        public static final int progress_bg_ticketvr=0x7f020014;
-        public static final int progress_horizontal_ticketvr=0x7f020015;
-        public static final int progress_primary_ticketvr=0x7f020016;
-        public static final int progress_secondary_ticketvr=0x7f020017;
-        public static final int selectable_background_ticketvr=0x7f020018;
-        public static final int spinner_ab_default_ticketvr=0x7f020019;
-        public static final int spinner_ab_disabled_ticketvr=0x7f02001a;
-        public static final int spinner_ab_focused_ticketvr=0x7f02001b;
-        public static final int spinner_ab_pressed_ticketvr=0x7f02001c;
-        public static final int spinner_background_ab_ticketvr=0x7f02001d;
-        public static final int tab_indicator_ab_ticketvr=0x7f02001e;
-        public static final int tab_selected_focused_ticketvr=0x7f02001f;
-        public static final int tab_selected_pressed_ticketvr=0x7f020020;
-        public static final int tab_selected_ticketvr=0x7f020021;
-        public static final int tab_unselected_focused_ticketvr=0x7f020022;
-        public static final int tab_unselected_pressed_ticketvr=0x7f020023;
-        public static final int tab_unselected_ticketvr=0x7f020024;
+        public static final int edit_text_holo_light=0x7f02000f;
+        public static final int ic_content_new=0x7f020010;
+        public static final int ic_launcher=0x7f020011;
+        public static final int list_focused_ticketvr=0x7f020012;
+        public static final int menu_dropdown_panel_ticketvr=0x7f020013;
+        public static final int pressed_background_ticketvr=0x7f020014;
+        public static final int progress_bg_ticketvr=0x7f020015;
+        public static final int progress_horizontal_ticketvr=0x7f020016;
+        public static final int progress_primary_ticketvr=0x7f020017;
+        public static final int progress_secondary_ticketvr=0x7f020018;
+        public static final int selectable_background_ticketvr=0x7f020019;
+        public static final int spinner_ab_default_ticketvr=0x7f02001a;
+        public static final int spinner_ab_disabled_ticketvr=0x7f02001b;
+        public static final int spinner_ab_focused_ticketvr=0x7f02001c;
+        public static final int spinner_ab_pressed_ticketvr=0x7f02001d;
+        public static final int spinner_background_ab_ticketvr=0x7f02001e;
+        public static final int tab_indicator_ab_ticketvr=0x7f02001f;
+        public static final int tab_selected_focused_ticketvr=0x7f020020;
+        public static final int tab_selected_pressed_ticketvr=0x7f020021;
+        public static final int tab_selected_ticketvr=0x7f020022;
+        public static final int tab_unselected_focused_ticketvr=0x7f020023;
+        public static final int tab_unselected_pressed_ticketvr=0x7f020024;
+        public static final int tab_unselected_ticketvr=0x7f020025;
+        public static final int textfield_activated_holo_light=0x7f020026;
+        public static final int textfield_default_holo_light=0x7f020027;
+        public static final int textfield_disabled_focused_holo_light=0x7f020028;
+        public static final int textfield_disabled_holo_light=0x7f020029;
+        public static final int textfield_focused_holo_light=0x7f02002a;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000c;
-        public static final int addButton=0x7f090008;
-        public static final int cardLabel=0x7f09000a;
+        public static final int action_settings=0x7f09000d;
+        public static final int addButton=0x7f090009;
+        public static final int cardLabel=0x7f09000b;
         public static final int cardNumber=0x7f090003;
-        public static final int checkButton=0x7f09000b;
+        public static final int checkButton=0x7f09000c;
         public static final int descDeposit=0x7f090006;
         public static final int frameLayout1=0x7f090001;
         public static final int greenBox=0x7f090004;
-        public static final int listView1=0x7f090009;
+        public static final int listView1=0x7f09000a;
         public static final int money=0x7f090002;
         public static final int nextDeposit=0x7f090005;
         public static final int pager=0x7f090000;
+        public static final int twoLineListItem1=0x7f090008;
         public static final int valueDeposit=0x7f090007;
     }
     public static final class layout {
@@ -115,10 +122,10 @@ public final class R {
         public static final int your_balance=0x7f06000c;
     }
     public static final class style {
-        public static final int ActionBar_Solid_Ticketvr=0x7f070003;
-        public static final int ActionBar_Transparent_Ticketvr=0x7f070006;
-        public static final int ActionBarTabStyle_Ticketvr=0x7f070009;
-        public static final int ActionButton_CloseMode_Ticketvr=0x7f07000c;
+        public static final int ActionBar_Solid_Ticketvr=0x7f070004;
+        public static final int ActionBar_Transparent_Ticketvr=0x7f070007;
+        public static final int ActionBarTabStyle_Ticketvr=0x7f07000a;
+        public static final int ActionButton_CloseMode_Ticketvr=0x7f07000d;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -145,15 +152,16 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
-        public static final int Button_Main=0x7f070005;
-        public static final int DropDownListView_Ticketvr=0x7f070008;
-        public static final int DropDownNav_Ticketvr=0x7f07000a;
-        public static final int PopupMenu_Ticketvr=0x7f070007;
-        public static final int ProgressBar_Ticketvr=0x7f07000b;
+        public static final int Button_Main=0x7f070006;
+        public static final int DropDownListView_Ticketvr=0x7f070009;
+        public static final int DropDownNav_Ticketvr=0x7f07000b;
+        public static final int EditTextAppTheme=0x7f070003;
+        public static final int PopupMenu_Ticketvr=0x7f070008;
+        public static final int ProgressBar_Ticketvr=0x7f07000c;
         public static final int Theme_Ticketvr=0x7f070002;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Ticketvr_Widget=0x7f07000d;
-        public static final int TitleTextStyle=0x7f070004;
+        public static final int Theme_Ticketvr_Widget=0x7f07000e;
+        public static final int TitleTextStyle=0x7f070005;
     }
 }

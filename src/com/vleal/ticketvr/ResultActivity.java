@@ -34,6 +34,7 @@ public class ResultActivity extends Activity {
 			
 			String value         = balance.getString("value");
 			String number        = balance.getString("number");
+			String date          = balance.getString("date");
 			
 			TextView cardNumber  = (TextView) findViewById(R.id.cardNumber);
 			TextView money       = (TextView) findViewById(R.id.money);
@@ -58,11 +59,12 @@ public class ResultActivity extends Activity {
 				greenBox.setVisibility(View.VISIBLE);
 			}
 			
+			setTitle(getString(R.string.your_balance) + " - " + date);
+			
 		} catch (JSONException e1) {
 			e1.printStackTrace();
 		}
 		
-		setTitle(R.string.your_balance);
 	}
 	
 	public String FormatCard(String card) {

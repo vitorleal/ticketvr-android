@@ -10,8 +10,13 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_ticketvr</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_ticketvr</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Ticketvr</item>
-        <item name="android:textColor">@color/default_ticketvr_color</item>
+        <item name="android:editTextBackground">@drawable/edit_text_holo_light</item>
     </style>
+    
+    <style name="EditTextAppTheme" parent="android:Widget.EditText">
+	  <item name="android:background">@drawable/edit_text_holo_light</item>
+	  <item name="android:textColor">#000000</item>
+  	</style>
 
     <style name="ActionBar.Solid.Ticketvr" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
         <item name="android:background">@color/main_red</item>
@@ -46,7 +51,6 @@
 
     <style name="ActionBarTabStyle.Ticketvr" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_ticketvr</item>
-        <item name="android:textColor">@color/default_ticketvr_color</item>
     </style>
 
     <style name="DropDownNav.Ticketvr" parent="@android:style/Widget.Holo.Light.Spinner">

@@ -44,10 +44,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager            = (ViewPager) findViewById(R.id.pager);
+		
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-
 
 		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
@@ -58,8 +57,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
 			actionBar.addTab(actionBar.newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
+				.setText(mSectionsPagerAdapter.getPageTitle(i))
+				.setTabListener(this));
 		}
 	}
 
@@ -70,19 +69,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}*/
 
 	@Override
-	public void onTabSelected(ActionBar.Tab tab,
-		FragmentTransaction fragmentTransaction) {
+	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 		mViewPager.setCurrentItem(tab.getPosition());
 	}
 
 	@Override
-	public void onTabUnselected(ActionBar.Tab tab,
-		FragmentTransaction fragmentTransaction) {
+	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 	}
 
 	@Override
-	public void onTabReselected(ActionBar.Tab tab,
-		FragmentTransaction fragmentTransaction) {
+	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 	}
 
 	
@@ -175,6 +171,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		String cardNumber           = cardField.getText().toString();
 		final ProgressDialog dialog = showLoader(this);
 		
+		hideKeyboard(view);
+		
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.get("http://ticketvr.herokuapp.com/card/"+ cardNumber, new JsonHttpResponseHandler() {
 		    @Override
@@ -229,6 +227,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         dialog.show();
         
         return dialog;
+	}
+	
+	//Hide keyboard
+	protected void hideKeyboard(View view) {
+	    InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	    in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 	
 	//Toast

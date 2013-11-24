@@ -14,10 +14,16 @@
     </style>
 
     <style name="ActionBar.Solid.Ticketvr" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
-        <item name="android:background">@drawable/ab_solid_ticketvr</item>
+        <item name="android:background">@color/main_red</item>
+        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_ticketvr</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_ticketvr</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Ticketvr</item>
+    </style>
+    
+    <style name="TitleTextStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
     </style>
     
     <style name="Button.Main" parent="@android:style/Theme.Holo.Light">
@@ -40,6 +46,7 @@
 
     <style name="ActionBarTabStyle.Ticketvr" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_ticketvr</item>
+        <item name="android:textColor">@color/default_ticketvr_color</item>
     </style>
 
     <style name="DropDownNav.Ticketvr" parent="@android:style/Widget.Holo.Light.Spinner">

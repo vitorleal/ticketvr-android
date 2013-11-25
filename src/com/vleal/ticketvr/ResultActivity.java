@@ -80,7 +80,7 @@ public class ResultActivity extends Activity {
 			   		
 			   		map.put("value", "R$ " + itemValue);
 			   		map.put("date", itemDate);
-			   		map.put("description", Captalize(itemDesc));
+			   		map.put("description", Capitalize(itemDesc));
 			   		
 			   		lastTransactionsList.add(map);
 			  	}
@@ -105,8 +105,8 @@ public class ResultActivity extends Activity {
 		return cardArray;
 	}
 
-	//Captalize
-	public String Captalize(String text) {
+	//Capitalize
+	public String Capitalize(String text) {
 		String[] textSplit    = text.toLowerCase().split(" ");
 		String textCaptalized = "";
 		

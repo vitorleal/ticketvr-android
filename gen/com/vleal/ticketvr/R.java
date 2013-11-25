@@ -80,7 +80,7 @@ public final class R {
         public static final int textfield_focused_holo_light=0x7f02002a;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000d;
+        public static final int action_settings=0x7f090010;
         public static final int addButton=0x7f090009;
         public static final int cardLabel=0x7f09000b;
         public static final int cardNumber=0x7f090003;
@@ -88,11 +88,14 @@ public final class R {
         public static final int descDeposit=0x7f090006;
         public static final int frameLayout1=0x7f090001;
         public static final int greenBox=0x7f090004;
+        public static final int list=0x7f090008;
+        public static final int listItemDate=0x7f09000d;
+        public static final int listItemDescription=0x7f09000f;
+        public static final int listItemValue=0x7f09000e;
         public static final int listView1=0x7f09000a;
         public static final int money=0x7f090002;
         public static final int nextDeposit=0x7f090005;
         public static final int pager=0x7f090000;
-        public static final int twoLineListItem1=0x7f090008;
         public static final int valueDeposit=0x7f090007;
     }
     public static final class layout {
@@ -100,6 +103,7 @@ public final class R {
         public static final int activity_result=0x7f030001;
         public static final int fragment_addcard=0x7f030002;
         public static final int fragment_check_balance=0x7f030003;
+        public static final int list_usage=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -124,9 +128,9 @@ public final class R {
     }
     public static final class style {
         public static final int ActionBar_Solid_Ticketvr=0x7f070004;
-        public static final int ActionBar_Transparent_Ticketvr=0x7f070007;
-        public static final int ActionBarTabStyle_Ticketvr=0x7f07000a;
-        public static final int ActionButton_CloseMode_Ticketvr=0x7f07000d;
+        public static final int ActionBar_Transparent_Ticketvr=0x7f070009;
+        public static final int ActionBarTabStyle_Ticketvr=0x7f07000c;
+        public static final int ActionButton_CloseMode_Ticketvr=0x7f07000f;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -153,16 +157,18 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
-        public static final int Button_Main=0x7f070006;
-        public static final int DropDownListView_Ticketvr=0x7f070009;
-        public static final int DropDownNav_Ticketvr=0x7f07000b;
+        public static final int BoxBlue=0x7f070007;
+        public static final int BoxGreen=0x7f070006;
+        public static final int Button_Main=0x7f070008;
+        public static final int DropDownListView_Ticketvr=0x7f07000b;
+        public static final int DropDownNav_Ticketvr=0x7f07000d;
         public static final int EditTextAppTheme=0x7f070003;
-        public static final int PopupMenu_Ticketvr=0x7f070008;
-        public static final int ProgressBar_Ticketvr=0x7f07000c;
+        public static final int PopupMenu_Ticketvr=0x7f07000a;
+        public static final int ProgressBar_Ticketvr=0x7f07000e;
         public static final int Theme_Ticketvr=0x7f070002;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Ticketvr_Widget=0x7f07000e;
+        public static final int Theme_Ticketvr_Widget=0x7f070010;
         public static final int TitleTextStyle=0x7f070005;
     }
 }

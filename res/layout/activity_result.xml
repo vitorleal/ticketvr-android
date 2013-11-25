@@ -2,39 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ResultActivity"
-    android:layout_marginTop="20dp" >
+    tools:context=".ResultActivity" >
 
-<FrameLayout
-    android:id="@+id/frameLayout1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentTop="true"
-    android:background="@drawable/balance_box_blue" >
+	<FrameLayout
+    	android:id="@+id/frameLayout1"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentLeft="true"
+    	android:layout_alignParentRight="true"
+    	android:layout_alignParentTop="true"
+    	android:background="@drawable/balance_box_blue" >
 
-    <TextView
-        android:id="@+id/money"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="R$ 200,00"
-        android:gravity="center"
-        android:textSize="30sp" />
+    	<TextView
+        	android:id="@+id/money"
+        	style="@style/BoxBlue"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_marginTop="35dp"
+        	android:text="R$ 200,00"
+        	android:gravity="center"
+        	android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/cardNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="0000.0000.0000.0000"
-        android:textSize="18sp" />
-</FrameLayout>
+    	<TextView
+        	android:id="@+id/cardNumber"
+        	style="@style/BoxBlue"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center"
+        	android:text="0000.0000.0000.0000"
+        	android:textSize="18sp" />
+	</FrameLayout>
 
     <FrameLayout
         android:id="@+id/greenBox"
@@ -44,7 +41,6 @@
         android:layout_alignLeft="@+id/frameLayout1"
         android:layout_alignRight="@+id/frameLayout1"
         android:layout_below="@+id/frameLayout1"
-        android:layout_marginTop="24dp"
         android:visibility="visible" >
 
         <TextView
@@ -53,10 +49,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="18sp"
+            style="@style/BoxGreen"
             android:text="@string/next_deposit" />
 
         <TextView
             android:id="@+id/descDeposit"
+            style="@style/BoxGreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
@@ -66,6 +64,7 @@
         
         <TextView
             android:id="@+id/valueDeposit"
+            style="@style/BoxGreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
@@ -75,13 +74,13 @@
 
     </FrameLayout>
 
-    <TwoLineListItem
-        android:id="@+id/twoLineListItem1"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/greenBox"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/greenBox"
-        android:layout_below="@+id/greenBox" />
+        android:layout_below="@+id/greenBox" >
+
+    </ListView>
+
 
 </RelativeLayout>

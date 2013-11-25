@@ -31,6 +31,14 @@
         <item name="android:textSize">18sp</item>
     </style>
     
+    <style name="BoxGreen">
+        <item name="android:textColor">@color/dark_green</item>
+    </style>
+    
+    <style name="BoxBlue">
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+    
     <style name="Button.Main" parent="@android:style/Theme.Holo.Light">
         <item name="android:background">@color/main_red</item>
         <item name="android:textColor">@color/white</item>

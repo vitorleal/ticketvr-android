@@ -1,5 +1,10 @@
 package com.vleal.ticketvr;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,10 +12,10 @@ import org.json.JSONObject;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class ResultActivity extends Activity {
@@ -32,6 +37,7 @@ public class ResultActivity extends Activity {
 			JSONObject json      = new JSONObject(string);
 			JSONObject balance   = (JSONObject) json.get("balance");
 			JSONArray scheduling = (JSONArray)  json.get("scheduling");
+			JSONArray arrayList  = (JSONArray)  json.get("list");
 			
 			String value         = balance.getString("value");
 			String number        = balance.getString("number");
@@ -60,6 +66,31 @@ public class ResultActivity extends Activity {
 				greenBox.setVisibility(View.VISIBLE);
 			}
 			
+			if (arrayList != null && arrayList.length() > 0) {
+				ListView list                  = (ListView) findViewById(R.id.list);
+				List<Map> lastTransactionsList = new ArrayList<Map>();
+				
+				for(int i = 0; i < arrayList.length(); i++) {
+					Map map             = new HashMap();
+					JSONObject listItem = arrayList.getJSONObject(i);
+			   		String itemValue    = listItem.optString("value");
+			   		String itemDate     = listItem.optString("date");
+			   		String itemDesc     = listItem.optString("description");
+			   		
+			   		map.put("value", itemValue);
+			   		map.put("date", itemDate);
+			   		map.put("description", itemDesc);
+			   		
+			   		lastTransactionsList.add(map);
+			  	}
+				
+				SimpleAdapter simpleAdapter = new SimpleAdapter(this, extracted(lastTransactionsList),
+						R.layout.list_usage, 
+						new String[] { "date", "value", "description" }, 
+						new int[] { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription });
+				list.setAdapter(simpleAdapter);
+			}
+			
 			setTitle(getString(R.string.your_balance) + " - " + date);
 			
 		} catch (JSONException e1) {
@@ -67,21 +98,25 @@ public class ResultActivity extends Activity {
 		}
 		
 	}
+
+	private List<? extends Map<String, ?>> extracted(List<Map> lastTransactionsList) {
+		return (List<? extends Map<String, ?>>) lastTransactionsList;
+	}
 	
-	public String FormatCard(String card) {
+	private HashMap<String, String> createListItem(String name, String value) {
+		HashMap<String, String> itemNameValue = new HashMap<String, String>();
+		itemNameValue.put(name, value);
+		return itemNameValue;
+	}
+
+	
+	/*public String FormatCard(String card) {
 		String[] cardArray = TextUtils.split(card, "\\d{1,4}");
 		Log.i("array", "" + cardArray);
 		String cardFormat  = TextUtils.join(" ", cardArray);
 		Log.i("card", "" + cardArray.toString());
 		
 		return cardFormat;
-	}
-
-	/*@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.result, menu);
-		return true;
 	}*/
 
 }

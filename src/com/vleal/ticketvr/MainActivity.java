@@ -181,7 +181,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		    	
 		    	try {
 					//if card is valid
-					if (json.has("valid")) {
+					if (json.has("balance")) {
 						Intent intent = new Intent();
 						intent.setClass(getApplicationContext(), ResultActivity.class);
 						
@@ -248,29 +248,5 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 		toast.show();
 	}
-	
-	//Database
-	/*public class CardOpenHelper extends SQLiteOpenHelper {
-
-	    private static final int DATABASE_VERSION = 2;
-	    private static final String DICTIONARY_TABLE_NAME = "cards";
-	    private static final String DICTIONARY_TABLE_CREATE =
-	                "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +
-	                KEY_WORD + " TEXT, " +
-	                KEY_DEFINITION + " TEXT);";
-
-	    DictionaryOpenHelper(Context context) {
-	        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-	    }
-
-	    @Override
-	    public void onCreate(SQLiteDatabase db) {
-	        db.execSQL(DICTIONARY_TABLE_CREATE);
-	    }
-
-		@Override
-		public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-		}
-	}*/
 
 }

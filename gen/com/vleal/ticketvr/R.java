@@ -112,6 +112,7 @@ public final class R {
         public static final int card=0x7f060007;
         public static final int card_label=0x7f060006;
         public static final int check_balance=0x7f060005;
+        public static final int connection_error=0x7f06000e;
         public static final int hello_world=0x7f06000b;
         public static final int loader_message=0x7f060009;
         public static final int loader_title=0x7f060008;

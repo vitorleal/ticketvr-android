@@ -21,6 +21,7 @@ public class ResultActivity extends Activity {
 		
 		final ActionBar actionBar = getActionBar();
 		actionBar.setHomeButtonEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		setContentView(R.layout.activity_result);
 		

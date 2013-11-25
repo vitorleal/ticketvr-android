@@ -27,7 +27,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -173,9 +172,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		
 		hideKeyboard(view);
 		
-		AsyncHttpClient client = new AsyncHttpClient();
-		client.get("http://ticketvr.herokuapp.com/card/"+ cardNumber, new JsonHttpResponseHandler() {
-		    @Override
+		TicketAPI.get(cardNumber, null, new JsonHttpResponseHandler() {
+			@Override
 		    public void onSuccess(JSONObject json) {
 		    	if (dialog.isShowing()) {
 		    		dialog.dismiss();
@@ -200,6 +198,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 					showToast("Erro ao conectar");
 					e.printStackTrace();
 				}
+		    }
+			
+			@Override
+		    public void onFailure(Throwable t, String error) {
+				if (dialog.isShowing()) {
+		    		dialog.dismiss();
+		        }
+				
+				showToast(error);
 		    }
 		});
 	}
@@ -241,5 +248,29 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 		toast.show();
 	}
+	
+	//Database
+	/*public class CardOpenHelper extends SQLiteOpenHelper {
+
+	    private static final int DATABASE_VERSION = 2;
+	    private static final String DICTIONARY_TABLE_NAME = "cards";
+	    private static final String DICTIONARY_TABLE_CREATE =
+	                "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +
+	                KEY_WORD + " TEXT, " +
+	                KEY_DEFINITION + " TEXT);";
+
+	    DictionaryOpenHelper(Context context) {
+	        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	    }
+
+	    @Override
+	    public void onCreate(SQLiteDatabase db) {
+	        db.execSQL(DICTIONARY_TABLE_CREATE);
+	    }
+
+		@Override
+		public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+		}
+	}*/
 
 }

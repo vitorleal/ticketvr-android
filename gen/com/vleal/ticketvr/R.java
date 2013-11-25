@@ -11,15 +11,17 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int blue=0x7f040008;
-        public static final int dark_blue=0x7f040007;
-        public static final int dark_green=0x7f04000a;
+        public static final int blue=0x7f04000a;
+        public static final int dark_blue=0x7f040009;
+        public static final int dark_green=0x7f04000c;
         public static final int dark_red=0x7f040003;
         public static final int default_color=0x7f040001;
-        public static final int green=0x7f04000b;
-        public static final int light_blue=0x7f040006;
+        public static final int gray=0x7f040007;
+        public static final int green=0x7f04000d;
+        public static final int light_blue=0x7f040008;
         public static final int light_gray=0x7f040005;
-        public static final int light_green=0x7f040009;
+        public static final int light_green=0x7f04000b;
+        public static final int lighter_gray=0x7f040006;
         public static final int main_red=0x7f040002;
         public static final int pressed_ticketvr=0x7f040000;
         public static final int white=0x7f040004;
@@ -80,23 +82,27 @@ public final class R {
         public static final int textfield_focused_holo_light=0x7f02002a;
     }
     public static final class id {
-        public static final int action_settings=0x7f090010;
-        public static final int addButton=0x7f090009;
-        public static final int cardLabel=0x7f09000b;
+        public static final int action_settings=0x7f090014;
+        public static final int addButton=0x7f09000b;
+        public static final int blueLine=0x7f090004;
+        public static final int cardLabel=0x7f09000d;
         public static final int cardNumber=0x7f090003;
-        public static final int checkButton=0x7f09000c;
-        public static final int descDeposit=0x7f090006;
+        public static final int checkButton=0x7f09000e;
+        public static final int descDeposit=0x7f090007;
         public static final int frameLayout1=0x7f090001;
-        public static final int greenBox=0x7f090004;
-        public static final int list=0x7f090008;
-        public static final int listItemDate=0x7f09000d;
-        public static final int listItemDescription=0x7f09000f;
-        public static final int listItemValue=0x7f09000e;
-        public static final int listView1=0x7f09000a;
+        public static final int greenBox=0x7f090005;
+        public static final int greenLine=0x7f090009;
+        public static final int list=0x7f09000a;
+        public static final int listItemDate=0x7f090010;
+        public static final int listItemDescription=0x7f090012;
+        public static final int listItemValue=0x7f090013;
+        public static final int listView1=0x7f09000c;
         public static final int money=0x7f090002;
-        public static final int nextDeposit=0x7f090005;
+        public static final int nextDeposit=0x7f090006;
         public static final int pager=0x7f090000;
-        public static final int valueDeposit=0x7f090007;
+        public static final int tableRow1=0x7f09000f;
+        public static final int tableRow3=0x7f090011;
+        public static final int valueDeposit=0x7f090008;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

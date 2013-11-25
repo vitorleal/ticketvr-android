@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class ResultActivity extends Activity {
@@ -46,7 +45,7 @@ public class ResultActivity extends Activity {
 			TextView cardNumber  = (TextView) findViewById(R.id.cardNumber);
 			TextView money       = (TextView) findViewById(R.id.money);
 			
-			cardNumber.setText("Cart‹o: "+ number);
+			cardNumber.setText("Cart‹o: "+ FormatCard(number));
 			money.setText("R$ "+ value);
 			
 			if (scheduling != null && scheduling.length() > 0) {
@@ -56,6 +55,7 @@ public class ResultActivity extends Activity {
 				String schedualValue    = (String) schedualJson.get("value");
 				
 				FrameLayout greenBox    = (FrameLayout) findViewById(R.id.greenBox);
+				View greenLine          = (View)        findViewById(R.id.greenLine);
 				TextView nextDeposit    = (TextView)    findViewById(R.id.nextDeposit);
 				TextView descDesdposit  = (TextView)    findViewById(R.id.descDeposit);
 				TextView valueDesposit  = (TextView)    findViewById(R.id.valueDeposit);
@@ -64,31 +64,30 @@ public class ResultActivity extends Activity {
 				descDesdposit.setText(schedualdesc);
 				valueDesposit.setText("R$ "+ schedualValue);
 				greenBox.setVisibility(View.VISIBLE);
+				greenLine.setVisibility(View.VISIBLE);
 			}
 			
 			if (arrayList != null && arrayList.length() > 0) {
 				ListView list                  = (ListView) findViewById(R.id.list);
-				List<Map> lastTransactionsList = new ArrayList<Map>();
+				List<Map<String, ?>> lastTransactionsList = new ArrayList<Map<String , ?>>();
 				
 				for(int i = 0; i < arrayList.length(); i++) {
-					Map map             = new HashMap();
-					JSONObject listItem = arrayList.getJSONObject(i);
-			   		String itemValue    = listItem.optString("value");
-			   		String itemDate     = listItem.optString("date");
-			   		String itemDesc     = listItem.optString("description");
+					Map<String, String> map = new HashMap<String, String>();
+					JSONObject listItem     = arrayList.getJSONObject(i);
+			   		String itemValue        = listItem.optString("value");
+			   		String itemDate         = listItem.optString("date");
+			   		String itemDesc         = listItem.optString("description");
 			   		
-			   		map.put("value", itemValue);
+			   		map.put("value", "R$ " + itemValue);
 			   		map.put("date", itemDate);
-			   		map.put("description", itemDesc);
+			   		map.put("description", Captalize(itemDesc));
 			   		
 			   		lastTransactionsList.add(map);
 			  	}
 				
-				SimpleAdapter simpleAdapter = new SimpleAdapter(this, extracted(lastTransactionsList),
-						R.layout.list_usage, 
+				list.setAdapter(new MyListAdapter(this, lastTransactionsList, R.layout.list_usage,
 						new String[] { "date", "value", "description" }, 
-						new int[] { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription });
-				list.setAdapter(simpleAdapter);
+						new int[]    { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription }));
 			}
 			
 			setTitle(getString(R.string.your_balance) + " - " + date);
@@ -99,24 +98,23 @@ public class ResultActivity extends Activity {
 		
 	}
 
-	private List<? extends Map<String, ?>> extracted(List<Map> lastTransactionsList) {
-		return (List<? extends Map<String, ?>>) lastTransactionsList;
-	}
-	
-	private HashMap<String, String> createListItem(String name, String value) {
-		HashMap<String, String> itemNameValue = new HashMap<String, String>();
-		itemNameValue.put(name, value);
-		return itemNameValue;
-	}
-
-	
-	/*public String FormatCard(String card) {
-		String[] cardArray = TextUtils.split(card, "\\d{1,4}");
-		Log.i("array", "" + cardArray);
-		String cardFormat  = TextUtils.join(" ", cardArray);
-		Log.i("card", "" + cardArray.toString());
+	//Format string as card 0000 0000 0000 0000
+	public String FormatCard(String card) {
+		String cardArray = card.replaceAll("\\d{4}", "$0 ").trim();
 		
-		return cardFormat;
-	}*/
+		return cardArray;
+	}
 
+	//Captalize
+	public String Captalize(String text) {
+		String[] textSplit    = text.toLowerCase().split(" ");
+		String textCaptalized = "";
+		
+		for(String w: textSplit) {
+			w = w.substring(0, 1).toUpperCase() + w.substring(1);
+			textCaptalized += " " + w;
+		}
+
+		return textCaptalized.trim().replaceAll("[-]$", "");
+	}
 }

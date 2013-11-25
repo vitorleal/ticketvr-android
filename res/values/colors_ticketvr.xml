@@ -5,8 +5,10 @@
     <color name="main_red">#E31E26</color>
     <color name="dark_red">#AD1A20</color>
     
-    <color name="white">#ffffff</color>
-    <color name="light_gray">#c8c8c8</color>
+    <color name="white">#FFFFFF</color>
+    <color name="light_gray">#C8C8C8</color>
+    <color name="lighter_gray">#F5F5F5</color>
+    <color name="gray">#999999</color>
     
     <color name="light_blue">#E5F5FF</color>
     <color name="dark_blue">#1E55E3</color>

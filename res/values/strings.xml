@@ -17,5 +17,6 @@
     <string name="next_deposit">Próximo depósito</string>
     <string name="connection_error">Erro ao conectar</string>
     <string name="loading">carregando…</string>
+    <string name="no_card">Você ainda não salvou nenhum cartão</string>
 
 </resources>

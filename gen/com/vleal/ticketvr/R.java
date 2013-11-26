@@ -126,6 +126,7 @@ public final class R {
         public static final int hello_world=0x7f06000b;
         public static final int loader_message=0x7f060009;
         public static final int loader_title=0x7f060008;
+        public static final int loading=0x7f06000f;
         public static final int my_cards=0x7f060002;
         public static final int next_deposit=0x7f06000d;
         public static final int no_save=0x7f060003;

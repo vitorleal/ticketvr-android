@@ -41,7 +41,7 @@
                 android:id="@+id/listItemDescription"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight=".9"
+                android:layout_weight=".8"
                 android:text="Description"
                 android:textSize="16sp"
                 android:textColor="@color/gray" />
@@ -50,7 +50,7 @@
                 android:id="@+id/listItemValue"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight=".1"
+                android:layout_weight=".2"
                 android:gravity="right"
                 android:text="R$ 300,00"
                 android:textSize="18sp"

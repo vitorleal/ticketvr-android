@@ -9,6 +9,7 @@ public class TicketAPI {
 	private static AsyncHttpClient client = new AsyncHttpClient();
 
 	public static void get(String card, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+		client.setTimeout(20000);
 		client.get(getAbsoluteUrl(card), params, responseHandler);
 	}
 	

@@ -195,19 +195,21 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 						showToast((String) json.get("error"));
 					}
 				} catch (JSONException e) {
-					showToast("Erro ao conectar");
+					showToast(getString(R.string.connection_error));
 					e.printStackTrace();
 				}
 		    }
 			
 			@Override
-		    public void onFailure(Throwable t, String error) {
+			public void onFailure(Throwable e, JSONObject errorResponse) {
+				super.onFailure(e, errorResponse);
+				
 				if (dialog.isShowing()) {
 		    		dialog.dismiss();
 		        }
 				
-				showToast(error);
-		    }
+				showToast(getString(R.string.connection_error));
+			}
 		});
 	}
 	
@@ -230,7 +232,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		ProgressDialog dialog = new ProgressDialog(context);
     	dialog.setCancelable(false);
     	dialog.setTitle(R.string.loader_title);
-    	dialog.setMessage("carregando...");
+    	dialog.setMessage(getString(R.string.loading));
         dialog.show();
         
         return dialog;

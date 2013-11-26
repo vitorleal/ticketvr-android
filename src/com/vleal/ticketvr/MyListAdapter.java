@@ -32,6 +32,8 @@ public class MyListAdapter extends SimpleAdapter{
 		
 		if (description.matches("Disponib. De Credito ")) {
 			textView.setTextColor(getGreenColor(view));
+		} else {
+			textView.setTextColor(getRedColor(view));
 		}
 		
 		return super.getView(position, convertView, parent);
@@ -39,6 +41,10 @@ public class MyListAdapter extends SimpleAdapter{
 
 	private int getGreenColor(View view) {
 		return view.getResources().getColor(R.color.green);
+	}
+	
+	private int getRedColor(View view) {
+		return view.getResources().getColor(R.color.main_red);
 	}
 	
 }

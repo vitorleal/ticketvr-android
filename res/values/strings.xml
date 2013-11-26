@@ -16,5 +16,6 @@
     <string name="your_balance">Seu saldo</string>
     <string name="next_deposit">Próximo depósito</string>
     <string name="connection_error">Erro ao conectar</string>
+    <string name="loading">carregando…</string>
 
 </resources>

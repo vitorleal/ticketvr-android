@@ -86,7 +86,7 @@
 	    android:id="@+id/greenLine"
 	    android:layout_width="match_parent"
  		android:layout_height="1dp"
- 		android:background="@color/blue"
+ 		android:background="@color/green"
  		android:layout_below="@+id/greenBox"
  		android:visibility="gone"
 	    />

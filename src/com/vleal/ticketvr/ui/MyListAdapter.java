@@ -18,7 +18,7 @@ public class MyListAdapter extends SimpleAdapter{
 	public MyListAdapter(Context context, List<Map<String, ?>> lastTransactionsList,
 			int resource, String[] from, int[] to) {
 		super(context, CreateList(lastTransactionsList), resource, from, to);
-		this.data    = lastTransactionsList;
+		this.data = lastTransactionsList;
 	}
 
 	private static List<? extends Map<String, ?>> CreateList(

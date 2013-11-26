@@ -3,6 +3,7 @@ package com.vleal.ticketvr.ui;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.vleal.ticketvr.R;
+import com.vleal.ticketvr.model.Card;
+import com.vleal.ticketvr.sqlite.helper.DatabaseHelper;
 
 public class AddCardDialog extends DialogFragment {
 
@@ -26,10 +29,10 @@ public class AddCardDialog extends DialogFragment {
 		dialog.setTitle(R.string.add_card);
 		dialog.setCancelable(false);
 
-		EditText numberCard = (EditText) view.findViewById(R.id.number_card);
-		//EditText nameCart   = (EditText) view.findViewById(R.id.name_card);
-		Button cancelButton = (Button)   view.findViewById(R.id.cancel_card);
-		Button saveCard     = (Button)   view.findViewById(R.id.save_card);
+		final EditText numberCard = (EditText) view.findViewById(R.id.number_card);
+		final EditText nameCard   = (EditText) view.findViewById(R.id.name_card);
+		Button cancelButton       = (Button)   view.findViewById(R.id.cancel_card);
+		Button saveCard           = (Button)   view.findViewById(R.id.save_card);
 		
 		//Cancel button click
 		cancelButton.setOnClickListener(new OnClickListener() {
@@ -45,11 +48,21 @@ public class AddCardDialog extends DialogFragment {
 		saveCard.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				SaveCard(numberCard.getText().toString(), nameCard.getText().toString());
 				dialog.dismiss();
 			}
 		});
 		
 		return view;
 	}
+	
+	public long SaveCard(String cardNumber, String cardName) {
+		DatabaseHelper db = new DatabaseHelper(this.getActivity());
+		Card newCard      = new Card(cardNumber, cardName);
+		long card_id      = db.createCard(newCard);
 		
+		Log.i("card id", "" + card_id);
+		db.closeDB();
+		return card_id;
+	}
 }

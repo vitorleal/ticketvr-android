@@ -77,7 +77,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_add_card:
-				AddNewCard(null);
+				addNewCard(null);
 				return true;
 
 			case R.id.action_settings:
@@ -234,7 +234,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 	
 	//AddCard dialog fragment
-	public void AddNewCard(View view) {
+	public void addNewCard(View view) {
 		DialogFragment cardDialog = AddCardDialog.newInstance();
 		cardDialog.show(getFragmentManager(), null);
 	}

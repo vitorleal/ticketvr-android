@@ -28,7 +28,7 @@
             android:src="@drawable/card"
             android:padding="10dp"
             android:contentDescription="@string/no_card"
-            android:onClick="AddNewCard" />
+            android:onClick="addNewCard" />
         
         <TextView
             android:id="@+id/no_card_text"
@@ -38,7 +38,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:textColor="@color/light_gray"
-            android:onClick="AddNewCard" />
+            android:onClick="addNewCard" />
 
     </LinearLayout>
 
@@ -51,7 +51,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/action_button"
         android:drawableStart="@drawable/ic_content_new"
-        android:onClick="AddNewCard"
+        android:onClick="addNewCard"
         android:paddingEnd="60dp"
         android:paddingStart="60dp"
         android:text="@string/add_card" />

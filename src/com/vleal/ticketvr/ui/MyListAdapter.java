@@ -1,4 +1,4 @@
-package com.vleal.ticketvr;
+package com.vleal.ticketvr.ui;
 
 import java.util.List;
 import java.util.Map;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.vleal.ticketvr.R;
 
 public class MyListAdapter extends SimpleAdapter{
 	

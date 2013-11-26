@@ -1,4 +1,4 @@
-package com.vleal.ticketvr;
+package com.vleal.ticketvr.api;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -9,7 +9,7 @@ public class TicketAPI {
 	private static AsyncHttpClient client = new AsyncHttpClient();
 
 	public static void get(String card, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-		client.setTimeout(20000);
+		client.setTimeout(30000);
 		client.get(getAbsoluteUrl(card), params, responseHandler);
 	}
 	

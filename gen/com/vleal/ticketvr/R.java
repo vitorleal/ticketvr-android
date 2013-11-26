@@ -84,8 +84,8 @@ public final class R {
         public static final int textfield_focused_holo_light=0x7f02002c;
     }
     public static final class id {
-        public static final int action_add_card=0x7f09001d;
-        public static final int action_settings=0x7f09001e;
+        public static final int action_add_card=0x7f09001b;
+        public static final int action_settings=0x7f09001c;
         public static final int addButton=0x7f09000c;
         public static final int blueLine=0x7f090004;
         public static final int cancel_card=0x7f090016;
@@ -97,9 +97,9 @@ public final class R {
         public static final int greenBox=0x7f090005;
         public static final int greenLine=0x7f090009;
         public static final int list=0x7f09000a;
-        public static final int listItemDate=0x7f090019;
-        public static final int listItemDescription=0x7f09001b;
-        public static final int listItemValue=0x7f09001c;
+        public static final int listItemDate=0x7f090018;
+        public static final int listItemDescription=0x7f090019;
+        public static final int listItemValue=0x7f09001a;
         public static final int listView1=0x7f09000d;
         public static final int money=0x7f090002;
         public static final int name_card=0x7f090015;
@@ -110,8 +110,6 @@ public final class R {
         public static final int number_card=0x7f090013;
         public static final int pager=0x7f090000;
         public static final int save_card=0x7f090017;
-        public static final int tableRow1=0x7f090018;
-        public static final int tableRow3=0x7f09001a;
         public static final int textView1=0x7f090012;
         public static final int textView2=0x7f090014;
         public static final int valueDeposit=0x7f090008;
@@ -121,34 +119,36 @@ public final class R {
         public static final int activity_result=0x7f030001;
         public static final int fragment_addcard=0x7f030002;
         public static final int fragment_check_balance=0x7f030003;
-        public static final int fragment_dialog_add_card=0x7f030004;
-        public static final int list_usage=0x7f030005;
+        public static final int fragment_dialog_addcard=0x7f030004;
+        public static final int list_item=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f080000;
         public static final int result=0x7f080001;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
-        public static final int add_card=0x7f060004;
-        public static final int app_name=0x7f060000;
-        public static final int cancel_card=0x7f060012;
-        public static final int card=0x7f060007;
-        public static final int card_label=0x7f060006;
-        public static final int check_balance=0x7f060005;
-        public static final int connection_error=0x7f06000e;
-        public static final int give_card_name=0x7f060011;
-        public static final int hello_world=0x7f06000b;
-        public static final int loader_message=0x7f060009;
-        public static final int loader_title=0x7f060008;
-        public static final int loading=0x7f06000f;
-        public static final int my_cards=0x7f060002;
-        public static final int next_deposit=0x7f06000d;
-        public static final int no_card=0x7f060010;
-        public static final int no_save=0x7f060003;
-        public static final int save_card=0x7f060013;
-        public static final int title_activity_result=0x7f06000a;
-        public static final int your_balance=0x7f06000c;
+        public static final int action_settings=0x7f060002;
+        public static final int add_card=0x7f060005;
+        public static final int app_name=0x7f060001;
+        public static final int cancel_card=0x7f060013;
+        public static final int card=0x7f060008;
+        public static final int card_label=0x7f060007;
+        public static final int check_balance=0x7f060006;
+        public static final int connection_error=0x7f06000f;
+        public static final int give_card_name=0x7f060012;
+        public static final int hello_world=0x7f06000c;
+        public static final int loader_message=0x7f06000a;
+        public static final int loader_title=0x7f060009;
+        public static final int loading=0x7f060010;
+        public static final int lorem_ipsum=0x7f060000;
+        public static final int my_cards=0x7f060003;
+        public static final int next_deposit=0x7f06000e;
+        public static final int no_card=0x7f060011;
+        public static final int no_save=0x7f060004;
+        public static final int save_card=0x7f060014;
+        public static final int test_card=0x7f060015;
+        public static final int title_activity_result=0x7f06000b;
+        public static final int your_balance=0x7f06000d;
     }
     public static final class style {
         public static final int ActionBar_Solid_Ticketvr=0x7f070004;

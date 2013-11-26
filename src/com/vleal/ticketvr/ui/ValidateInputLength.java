@@ -1,4 +1,4 @@
-package com.vleal.ticketvr;
+package com.vleal.ticketvr.ui;
 
 import android.text.Editable;
 import android.text.TextWatcher;

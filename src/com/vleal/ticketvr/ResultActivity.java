@@ -3,11 +3,14 @@ package com.vleal.ticketvr;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.vleal.ticketvr.ui.MyListAdapter;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -85,7 +88,7 @@ public class ResultActivity extends Activity {
 			   		lastTransactionsList.add(map);
 			  	}
 				
-				list.setAdapter(new MyListAdapter(this, lastTransactionsList, R.layout.list_usage,
+				list.setAdapter(new MyListAdapter(this, lastTransactionsList, R.layout.list_item,
 						new String[] { "date", "value", "description" }, 
 						new int[]    { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription }));
 			}
@@ -107,11 +110,12 @@ public class ResultActivity extends Activity {
 
 	//Capitalize
 	public String Capitalize(String text) {
-		String[] textSplit    = text.toLowerCase().split(" ");
+		Locale l              = Locale.getDefault();
+		String[] textSplit    = text.toLowerCase(l).split(" ");
 		String textCaptalized = "";
 		
 		for(String w: textSplit) {
-			w = w.substring(0, 1).toUpperCase() + w.substring(1);
+			w = w.substring(0, 1).toUpperCase(l) + w.substring(1);
 			textCaptalized += " " + w;
 		}
 

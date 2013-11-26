@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	<string name="lorem_ipsum">Lorem ipsum</string>
     <string name="app_name">TicketVR</string>
     <string name="action_settings">Settings</string>
     <string name="my_cards">Meus cartões</string>
@@ -21,5 +21,5 @@
     <string name="give_card_name">De um nome ao cartão</string>
     <string name="cancel_card">Cancelar</string>
     <string name="save_card">Salvar</string>
-
+    <string name="test_card">6033425792222272</string>
 </resources>

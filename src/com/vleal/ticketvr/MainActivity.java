@@ -29,6 +29,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.vleal.ticketvr.api.TicketAPI;
+import com.vleal.ticketvr.ui.AddCardDialog;
+import com.vleal.ticketvr.ui.ValidateInputLength;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	SectionsPagerAdapter mSectionsPagerAdapter;
@@ -72,18 +75,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	//Handle the menu item click
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case R.id.action_add_card:
-	            AddNewCard(null);
-	            return true;
-	            
-	        case R.id.action_settings:
-	            //showHelp();
-	            return true;
-	            
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+		switch (item.getItemId()) {
+			case R.id.action_add_card:
+				AddNewCard(null);
+				return true;
+
+			case R.id.action_settings:
+				//showHelp();
+				return true;
+
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override

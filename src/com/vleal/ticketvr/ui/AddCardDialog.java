@@ -1,4 +1,4 @@
-package com.vleal.ticketvr;
+package com.vleal.ticketvr.ui;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -10,16 +10,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.vleal.ticketvr.R;
+
 public class AddCardDialog extends DialogFragment {
 
-	static AddCardDialog newInstance() {
+	public static AddCardDialog newInstance() {
         return new AddCardDialog();
     }
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final Dialog dialog = getDialog();
-		View view           = inflater.inflate(R.layout.fragment_dialog_add_card, container, false);
+		View view           = inflater.inflate(R.layout.fragment_dialog_addcard, container, false);
 		
 		dialog.setTitle(R.string.add_card);
 		dialog.setCancelable(false);

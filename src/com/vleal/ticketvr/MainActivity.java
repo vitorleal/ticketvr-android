@@ -1,5 +1,6 @@
 package com.vleal.ticketvr;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.json.JSONException;
@@ -26,10 +27,14 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.vleal.ticketvr.api.TicketAPI;
+import com.vleal.ticketvr.model.Card;
+import com.vleal.ticketvr.sqlite.helper.DatabaseHelper;
 import com.vleal.ticketvr.ui.AddCardDialog;
 import com.vleal.ticketvr.ui.ValidateInputLength;
 
@@ -82,6 +87,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 			case R.id.action_settings:
 				//showHelp();
+				getCardsList();
 				return true;
 
 			default:
@@ -112,19 +118,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		@Override
 		public Fragment getItem(int position) {
+			Fragment fragment;
+			
 			if (position == 0) {
-				Fragment fragment = new AddCardSectionFragment();
-				Bundle args       = new Bundle();
-				fragment.setArguments(args);
-				return fragment;
+				fragment = new AddCardSectionFragment();
 				
 			} else {
-				Fragment fragment = new CheckBalanceSectionFragment();
-				Bundle args       = new Bundle();
-				//args.putInt(CheckBalanceSectionFragment.ARG_SECTION_NUMBER, position + 1);
-				fragment.setArguments(args);
-				return fragment;
+				fragment = new CheckBalanceSectionFragment();
 			}
+			
+			Bundle args = new Bundle();
+			fragment.setArguments(args);
+			return fragment;
 		}
 
 		@Override
@@ -249,6 +254,24 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         dialog.show();
         
         return dialog;
+	}
+	
+	public void getCardsList() {
+		DatabaseHelper db    = new DatabaseHelper(this);
+		List<Card> cards     = db.getAllCards();
+		LinearLayout noCard  = (LinearLayout) findViewById(R.id.no_card);
+		ListView cardsList   = (ListView)     findViewById(R.id.cards_list);
+		
+		db.closeDB();
+		
+		if (cards.isEmpty()) {
+			noCard.setVisibility(View.VISIBLE);
+			cardsList.setVisibility(View.GONE);
+			
+		} else {
+			noCard.setVisibility(View.GONE);
+			cardsList.setVisibility(View.VISIBLE);
+		}
 	}
 	
 	//Hide keyboard

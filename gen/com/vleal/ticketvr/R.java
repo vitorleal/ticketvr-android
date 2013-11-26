@@ -84,34 +84,35 @@ public final class R {
         public static final int textfield_focused_holo_light=0x7f02002c;
     }
     public static final class id {
-        public static final int action_add_card=0x7f09001b;
-        public static final int action_settings=0x7f09001c;
+        public static final int action_add_card=0x7f09001c;
+        public static final int action_settings=0x7f09001d;
         public static final int addButton=0x7f09000c;
         public static final int blueLine=0x7f090004;
-        public static final int cancel_card=0x7f090016;
-        public static final int cardLabel=0x7f090010;
+        public static final int cancel_card=0x7f090017;
+        public static final int cardLabel=0x7f090011;
         public static final int cardNumber=0x7f090003;
-        public static final int checkButton=0x7f090011;
+        public static final int cards_list=0x7f090010;
+        public static final int checkButton=0x7f090012;
         public static final int descDeposit=0x7f090007;
         public static final int frameLayout1=0x7f090001;
         public static final int greenBox=0x7f090005;
         public static final int greenLine=0x7f090009;
         public static final int list=0x7f09000a;
-        public static final int listItemDate=0x7f090018;
-        public static final int listItemDescription=0x7f090019;
-        public static final int listItemValue=0x7f09001a;
+        public static final int listItemDate=0x7f090019;
+        public static final int listItemDescription=0x7f09001a;
+        public static final int listItemValue=0x7f09001b;
         public static final int listView1=0x7f09000d;
         public static final int money=0x7f090002;
-        public static final int name_card=0x7f090015;
+        public static final int name_card=0x7f090016;
         public static final int nextDeposit=0x7f090006;
         public static final int no_card=0x7f09000b;
         public static final int no_card_img=0x7f09000e;
         public static final int no_card_text=0x7f09000f;
-        public static final int number_card=0x7f090013;
+        public static final int number_card=0x7f090014;
         public static final int pager=0x7f090000;
-        public static final int save_card=0x7f090017;
-        public static final int textView1=0x7f090012;
-        public static final int textView2=0x7f090014;
+        public static final int save_card=0x7f090018;
+        public static final int textView1=0x7f090013;
+        public static final int textView2=0x7f090015;
         public static final int valueDeposit=0x7f090008;
     }
     public static final class layout {

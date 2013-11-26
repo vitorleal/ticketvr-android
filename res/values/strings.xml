@@ -18,5 +18,8 @@
     <string name="connection_error">Erro ao conectar</string>
     <string name="loading">carregando…</string>
     <string name="no_card">Você ainda não salvou nenhum cartão</string>
+    <string name="give_card_name">De um nome ao cartão</string>
+    <string name="cancel_card">Cancelar</string>
+    <string name="save_card">Salvar</string>
 
 </resources>

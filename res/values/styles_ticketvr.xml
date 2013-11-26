@@ -43,6 +43,11 @@
         <item name="android:background">@color/main_red</item>
         <item name="android:textColor">@color/white</item>
     </style>
+    
+    <style name="Button.Gray" parent="@android:style/Theme.Holo.Light">
+        <item name="android:background">@color/light_gray</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
     <style name="ActionBar.Transparent.Ticketvr" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@drawable/ab_transparent_ticketvr</item>

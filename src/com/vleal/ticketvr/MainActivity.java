@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ActionBar;
+import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -211,6 +212,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				showToast(getString(R.string.connection_error));
 			}
 		});
+	}
+	
+	public void AddNewCard(View view) {
+		DialogFragment cardDialog = AddCardDialog.newInstance();
+		cardDialog.show(getFragmentManager(), "alertdialog");
 	}
 	
 	

@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/card"
             android:padding="10dp"
-            android:contentDescription="@string/no_card" />
+            android:contentDescription="@string/no_card" 
+            android:onClick="AddNewCard"/>
         
         <TextView
             android:id="@+id/no_card_text"
@@ -41,16 +42,18 @@
     <Button
         android:id="@+id/addButton"
         style="@style/Button.Main"
+        android:background="@drawable/action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/listView1"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/action_button"
         android:drawableStart="@drawable/ic_content_new"
         android:paddingEnd="60dp"
         android:paddingStart="60dp"
-        android:text="@string/add_card" />
+        android:text="@string/add_card"
+        android:onClick="AddNewCard"
+        android:layout_marginTop="15dp" />
 
     <ListView
         android:id="@+id/listView1"

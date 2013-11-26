@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/card_label" />
+    
+    <EditText
+        android:id="@+id/number_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="16"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/give_card_name"
+        android:paddingTop="15dp" />
+
+   <EditText
+       android:id="@+id/name_card"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:ems="10" 
+       android:inputType="text"
+       android:maxLength="20"
+       android:singleLine="true"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:paddingTop="20dp" >
+
+       <Button
+           android:id="@+id/cancel_card"
+           style="@style/Button.Gray"
+           android:background="@drawable/cancel_button"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight=".4"
+           android:text="@string/cancel_card" />
+
+       <Button
+           android:id="@+id/save_card"
+           style="@style/Button.Main"
+           android:background="@drawable/action_button"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight=".6"
+           android:text="@string/save_card"
+           android:layout_marginLeft="15dp" />
+   </LinearLayout>
+
+</LinearLayout>

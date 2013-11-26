@@ -17,10 +17,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -62,11 +62,29 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		}
 	}
 
-	/*@Override
+	//Inflate the menu
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
-	}*/
+	}
+	
+	//Handle the menu item click
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.action_add_card:
+	            AddNewCard(null);
+	            return true;
+	            
+	        case R.id.action_settings:
+	            //showHelp();
+	            return true;
+	            
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 
 	@Override
 	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -143,23 +161,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			EditText cardNumber       = (EditText) view.findViewById(R.id.cardNumber);
 			final Button checkBalance = (Button)   view.findViewById(R.id.checkButton);
 			
-			cardNumber.addTextChangedListener(new TextWatcher(){
-				@Override
-		        public void onTextChanged(CharSequence s, int start, int before, int count) {
-					if (s.length() == 16) {
-						checkBalance.setEnabled(true);
-						
-					} else {
-						checkBalance.setEnabled(false);
-					}
-		        }
-				
-				@Override
-				public void afterTextChanged(Editable arg0) {}
-				
-				@Override
-				public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-		    });
+			cardNumber.addTextChangedListener(new ValidateInputLength(checkBalance));
 			
 			super.onViewCreated(view, savedInstanceState);
 		}
@@ -214,13 +216,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		});
 	}
 	
-	public void AddNewCard(View view) {
-		DialogFragment cardDialog = AddCardDialog.newInstance();
-		cardDialog.show(getFragmentManager(), "alertdialog");
-	}
 	
-	
-	//Add card Section fragment
+	//AddCard Section fragment
 	public static class AddCardSectionFragment extends Fragment {
 		public AddCardSectionFragment() {}
 		
@@ -230,6 +227,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			
 			return rootView;
 		}
+	}
+	
+	
+	//AddCard dialog fragment
+	public void AddNewCard(View view) {
+		DialogFragment cardDialog = AddCardDialog.newInstance();
+		cardDialog.show(getFragmentManager(), null);
 	}
 	
 	

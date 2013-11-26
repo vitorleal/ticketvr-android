@@ -13,11 +13,13 @@
         android:id="@+id/no_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/addButton"
         android:layout_alignLeft="@+id/listView1"
         android:layout_alignParentRight="true"
-        android:padding="12dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center|center_horizontal"
         android:orientation="vertical"
-        android:layout_alignParentTop="true" >
+        android:padding="12dp" >
 
         <ImageView
             android:id="@+id/no_card_img"
@@ -25,8 +27,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/card"
             android:padding="10dp"
-            android:contentDescription="@string/no_card" 
-            android:onClick="AddNewCard"/>
+            android:contentDescription="@string/no_card"
+            android:onClick="AddNewCard" />
         
         <TextView
             android:id="@+id/no_card_text"
@@ -35,25 +37,24 @@
             android:text="@string/no_card"
             android:textStyle="bold"
             android:gravity="center"
-            android:textColor="@color/gray" />
+            android:textColor="@color/light_gray"
+            android:onClick="AddNewCard" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/addButton"
         style="@style/Button.Main"
-        android:background="@drawable/action_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listView1"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/action_button"
         android:drawableStart="@drawable/ic_content_new"
+        android:onClick="AddNewCard"
         android:paddingEnd="60dp"
         android:paddingStart="60dp"
-        android:text="@string/add_card"
-        android:onClick="AddNewCard"
-        android:layout_marginTop="15dp" />
+        android:text="@string/add_card" />
 
     <ListView
         android:id="@+id/listView1"
@@ -62,7 +63,8 @@
         android:layout_above="@+id/addButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/no_card" >
+        android:layout_below="@+id/no_card"
+        android:visibility="gone" >
 
     </ListView>
 

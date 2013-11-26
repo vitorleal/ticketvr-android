@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class AddCardDialog extends DialogFragment {
 
@@ -23,19 +24,20 @@ public class AddCardDialog extends DialogFragment {
 		dialog.setTitle(R.string.add_card);
 		dialog.setCancelable(false);
 
-		//EditText numberCard = (EditText) view.findViewById(R.id.number_card);
+		EditText numberCard = (EditText) view.findViewById(R.id.number_card);
 		//EditText nameCart   = (EditText) view.findViewById(R.id.name_card);
-		Button cancelButton = (Button) view.findViewById(R.id.cancel_card);
-		Button saveCard = (Button) view.findViewById(R.id.save_card);
+		Button cancelButton = (Button)   view.findViewById(R.id.cancel_card);
+		Button saveCard     = (Button)   view.findViewById(R.id.save_card);
 		
 		//Cancel button click
 		cancelButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
-				
 			}
 		});
+		
+		numberCard.addTextChangedListener(new ValidateInputLength(saveCard));
 		
 		//Save button click
 		saveCard.setOnClickListener(new OnClickListener() {
@@ -45,7 +47,6 @@ public class AddCardDialog extends DialogFragment {
 			}
 		});
 		
-        
 		return view;
 	}
 		

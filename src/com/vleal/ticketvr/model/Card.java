@@ -1,6 +1,5 @@
 package com.vleal.ticketvr.model;
 
-import com.vleal.ticketvr.ui.CardFormat;
 
 public class Card {
 	int id;
@@ -10,7 +9,7 @@ public class Card {
 	public Card() {}
 	
 	public Card(String cardNumber, String cardName) {
-		this.cardNumber = CardFormat.string(cardNumber);
+		this.cardNumber = cardNumber;
 		this.cardName   = cardName;
 	}
 	

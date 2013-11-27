@@ -6,28 +6,21 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.ActionBar;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -35,10 +28,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.vleal.ticketvr.api.TicketAPI;
+import com.vleal.ticketvr.api.CheckCard;
 import com.vleal.ticketvr.model.Card;
 import com.vleal.ticketvr.sqlite.helper.DatabaseHelper;
 import com.vleal.ticketvr.ui.AddCardDialog;
@@ -100,7 +91,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 			case R.id.action_settings:
 				//showHelp();
-				//getCardsList();
 				return true;
 
 			default:
@@ -179,62 +169,23 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		
 		@Override
 		public void onViewCreated(View view, Bundle savedInstanceState) {
-			EditText cardNumber       = (EditText) view.findViewById(R.id.cardNumber);
-			final Button checkBalance = (Button)   view.findViewById(R.id.checkButton);
+			final EditText cardNumber = (EditText) view.findViewById(R.id.cardNumber);
+			Button checkBalance       = (Button)   view.findViewById(R.id.checkButton);
 			
 			cardNumber.addTextChangedListener(new ValidateInputLength(checkBalance));
 			
+			//on button click
+			checkBalance.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					String number = cardNumber.getText().toString();
+					CheckCard checkCard = new CheckCard(v.getContext());
+					checkCard.balance(v, number);
+				}
+			});
+			
 			super.onViewCreated(view, savedInstanceState);
 		}
-	}
-	
-	//Check card balance
-	public void checkMyBalance(View view, String cardNumber) {
-		//EditText cardField          = (EditText) findViewById(R.id.cardNumber); 
-		//String cardNumber           = cardField.getText().toString();
-		final ProgressDialog dialog = showLoader(this);
-		
-		hideKeyboard(view);
-		
-		TicketAPI.get(cardNumber, null, new JsonHttpResponseHandler() {
-			@Override
-		    public void onSuccess(JSONObject json) {
-		    	if (dialog.isShowing()) {
-		    		dialog.dismiss();
-		        }
-		    	
-		    	try {
-					//if card is valid
-					if (json.has("balance")) {
-						Intent intent = new Intent();
-						intent.setClass(getApplicationContext(), ResultActivity.class);
-						
-						Bundle bundle = new Bundle();
-						bundle.putString("json", json.toString());
-						
-						intent.putExtras(bundle);
-					    startActivity(intent);
-						
-					} else {
-						showToast((String) json.get("error"));
-					}
-				} catch (JSONException e) {
-					showToast(getString(R.string.connection_error));
-					e.printStackTrace();
-				}
-		    }
-			
-			@Override
-			public void onFailure(Throwable e, JSONObject errorResponse) {
-				super.onFailure(e, errorResponse);
-				
-				if (dialog.isShowing()) {
-		    		dialog.dismiss();
-		        }
-				
-				showToast(getString(R.string.connection_error));
-			}
-		});
 	}
 	
 	
@@ -256,18 +207,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		DialogFragment cardDialog = AddCardDialog.newInstance();
 		cardDialog.show(getFragmentManager(), null);
 	}
-	
-	
-	//Async Loader
-	public ProgressDialog showLoader(Context context) {
-		ProgressDialog dialog = new ProgressDialog(context);
-    	dialog.setCancelable(false);
-    	dialog.setTitle(R.string.loader_title);
-    	dialog.setMessage(getString(R.string.loading));
-        dialog.show();
-        
-        return dialog;
-	}
+
 	
 	public void getCardsList() {
 		DatabaseHelper db   = new DatabaseHelper(this);
@@ -284,8 +224,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		} else {
 			noCard.setVisibility(View.GONE);
 			cardsList.setVisibility(View.VISIBLE);
-			
-			ListView cardList                  = (ListView) findViewById(R.id.cards_list);
+
 			List<Map<String, ?>> cardListArray = new ArrayList<Map<String , ?>>();
 			
 			for(int i = 0; i < cards.size(); i++) {
@@ -294,43 +233,26 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		   		String cardNumber = (String) cards.get(i).getCardNumber();
 		   		String cardName   = (String) cards.get(i).getCardName();
 		   		
-		   		map.put("cardNumber", cardNumber);
+		   		map.put("cardNumber", CardFormat.string(cardNumber));
 		   		map.put("cardName", cardName);
 		   		
 		   		cardListArray.add(map);
 		  	}
 			
-			cardList.setAdapter(new CardListAdapter(this, cardListArray, R.layout.card_list_item,
-					new String[] { "cardNumber", "cardName" }, 
-					new int[]    { R.id.card_number, R.id.card_name }));
+			cardsList.setAdapter(new CardListAdapter(this, cardListArray, R.layout.card_list_item,
+				new String[] { "cardNumber", "cardName" }, 
+				new int[]    { R.id.card_number, R.id.card_name }));
 			
-			cardList.setOnItemClickListener(new OnItemClickListener() {
-
+			//on item click
+			cardsList.setOnItemClickListener(new OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
 					TextView cardNumberView = (TextView) view.findViewById(R.id.card_number);
-					String cardNumber = (String) cardNumberView.getText();
-					
-					if (cardNumber.length() == 16) {
-						checkMyBalance(cardNumberView, cardNumber);
-					}
+					String cardNumber       = (String)   cardNumberView.getText();
+					CheckCard checkCard     = new CheckCard(view.getContext());
+					checkCard.balance(cardNumberView, cardNumber);
 				}
-				
 			});
 		}
 	}
-	
-	//Hide keyboard
-	protected void hideKeyboard(View view) {
-	    InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-	    in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-	}
-	
-	//Toast
-	public void showToast(String text) {
-		Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
-		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-		toast.show();
-	}
-
 }

@@ -6,4 +6,9 @@ public class CardFormat {
 		
 		return cardArray;
 	}
+	
+	public static String clean(String card) {
+		String cardClean = card.replace(" ", "");
+		return cardClean;
+	}
 }

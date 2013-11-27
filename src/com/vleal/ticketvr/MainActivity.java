@@ -1,7 +1,10 @@
 package com.vleal.ticketvr;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,10 +28,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -36,11 +42,12 @@ import com.vleal.ticketvr.api.TicketAPI;
 import com.vleal.ticketvr.model.Card;
 import com.vleal.ticketvr.sqlite.helper.DatabaseHelper;
 import com.vleal.ticketvr.ui.AddCardDialog;
+import com.vleal.ticketvr.ui.CardFormat;
+import com.vleal.ticketvr.ui.CardListAdapter;
 import com.vleal.ticketvr.ui.ValidateInputLength;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	SectionsPagerAdapter mSectionsPagerAdapter;
-
 	ViewPager mViewPager;
 
 	@Override
@@ -60,7 +67,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			@Override
 			public void onPageSelected(int position) {
 				actionBar.setSelectedNavigationItem(position);
+
+				if (position == 0) {
+					getCardsList();
+				}
 			}
+			
 		});
 
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -68,6 +80,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				.setText(mSectionsPagerAdapter.getPageTitle(i))
 				.setTabListener(this));
 		}
+		
 	}
 
 	//Inflate the menu
@@ -87,7 +100,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 			case R.id.action_settings:
 				//showHelp();
-				getCardsList();
+				//getCardsList();
 				return true;
 
 			default:
@@ -176,9 +189,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 	
 	//Check card balance
-	public void checkMyBalance(View view) {
-		EditText cardField          = (EditText) findViewById(R.id.cardNumber); 
-		String cardNumber           = cardField.getText().toString();
+	public void checkMyBalance(View view, String cardNumber) {
+		//EditText cardField          = (EditText) findViewById(R.id.cardNumber); 
+		//String cardNumber           = cardField.getText().toString();
 		final ProgressDialog dialog = showLoader(this);
 		
 		hideKeyboard(view);
@@ -257,10 +270,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 	
 	public void getCardsList() {
-		DatabaseHelper db    = new DatabaseHelper(this);
-		List<Card> cards     = db.getAllCards();
-		LinearLayout noCard  = (LinearLayout) findViewById(R.id.no_card);
-		ListView cardsList   = (ListView)     findViewById(R.id.cards_list);
+		DatabaseHelper db   = new DatabaseHelper(this);
+		List<Card> cards    = db.getAllCards();
+		LinearLayout noCard = (LinearLayout) findViewById(R.id.no_card);
+		ListView cardsList  = (ListView)     findViewById(R.id.cards_list);
 		
 		db.closeDB();
 		
@@ -271,6 +284,39 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		} else {
 			noCard.setVisibility(View.GONE);
 			cardsList.setVisibility(View.VISIBLE);
+			
+			ListView cardList                  = (ListView) findViewById(R.id.cards_list);
+			List<Map<String, ?>> cardListArray = new ArrayList<Map<String , ?>>();
+			
+			for(int i = 0; i < cards.size(); i++) {
+				Map<String, String> map = new HashMap<String, String>();
+				
+		   		String cardNumber = (String) cards.get(i).getCardNumber();
+		   		String cardName   = (String) cards.get(i).getCardName();
+		   		
+		   		map.put("cardNumber", cardNumber);
+		   		map.put("cardName", cardName);
+		   		
+		   		cardListArray.add(map);
+		  	}
+			
+			cardList.setAdapter(new CardListAdapter(this, cardListArray, R.layout.card_list_item,
+					new String[] { "cardNumber", "cardName" }, 
+					new int[]    { R.id.card_number, R.id.card_name }));
+			
+			cardList.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
+					TextView cardNumberView = (TextView) view.findViewById(R.id.card_number);
+					String cardNumber = (String) cardNumberView.getText();
+					
+					if (cardNumber.length() == 16) {
+						checkMyBalance(cardNumberView, cardNumber);
+					}
+				}
+				
+			});
 		}
 	}
 	

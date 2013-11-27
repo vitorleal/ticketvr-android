@@ -11,18 +11,16 @@ import android.widget.TextView;
 
 import com.vleal.ticketvr.R;
 
-public class MyListAdapter extends SimpleAdapter{
+public class MyListAdapter extends SimpleAdapter {
 	
 	private List<?> data;
 	
-	public MyListAdapter(Context context, List<Map<String, ?>> lastTransactionsList,
-			int resource, String[] from, int[] to) {
+	public MyListAdapter(Context context, List<Map<String, ?>> lastTransactionsList, int resource, String[] from, int[] to) {
 		super(context, CreateList(lastTransactionsList), resource, from, to);
 		this.data = lastTransactionsList;
 	}
 
-	private static List<? extends Map<String, ?>> CreateList(
-			List<Map<String, ?>> lastTransactionsList) {
+	private static List<? extends Map<String, ?>> CreateList(List<Map<String, ?>> lastTransactionsList) {
 		return (List<? extends Map<String, ?>>) lastTransactionsList;
 	}
 	

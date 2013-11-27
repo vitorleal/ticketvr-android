@@ -10,8 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.vleal.ticketvr.ui.MyListAdapter;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
@@ -19,6 +17,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.vleal.ticketvr.ui.CardFormat;
+import com.vleal.ticketvr.ui.MyListAdapter;
 
 public class ResultActivity extends Activity {
 
@@ -48,7 +49,7 @@ public class ResultActivity extends Activity {
 			TextView cardNumber  = (TextView) findViewById(R.id.cardNumber);
 			TextView money       = (TextView) findViewById(R.id.money);
 			
-			cardNumber.setText("Cart‹o: "+ FormatCard(number));
+			cardNumber.setText("Cart‹o: "+ CardFormat.string(number));
 			money.setText("R$ "+ value);
 			
 			if (scheduling != null && scheduling.length() > 0) {
@@ -99,13 +100,6 @@ public class ResultActivity extends Activity {
 			e1.printStackTrace();
 		}
 		
-	}
-
-	//Format string as card 0000 0000 0000 0000
-	public String FormatCard(String card) {
-		String cardArray = card.replaceAll("\\d{4}", "$0 ").trim();
-		
-		return cardArray;
 	}
 
 	//Capitalize

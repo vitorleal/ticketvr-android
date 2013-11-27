@@ -61,7 +61,6 @@ public class AddCardDialog extends DialogFragment {
 		Card newCard      = new Card(cardNumber, cardName);
 		long card_id      = db.createCard(newCard);
 		
-		Log.i("card id", "" + card_id);
 		db.closeDB();
 		return card_id;
 	}

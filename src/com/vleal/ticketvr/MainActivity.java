@@ -63,7 +63,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 					getCardsList();
 				}
 			}
-			
 		});
 
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -71,7 +70,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				.setText(mSectionsPagerAdapter.getPageTitle(i))
 				.setTabListener(this));
 		}
-		
 	}
 
 	//Inflate the menu

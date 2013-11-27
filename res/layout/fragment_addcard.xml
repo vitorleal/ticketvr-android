@@ -58,7 +58,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/no_card"
-        android:visibility="gone" >
+        android:visibility="gone"
+        android:divider="@null"
+		android:dividerHeight="0dp">
 
     </ListView>
 

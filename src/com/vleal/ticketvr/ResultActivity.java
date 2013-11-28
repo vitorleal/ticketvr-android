@@ -1,11 +1,5 @@
 package com.vleal.ticketvr;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,10 +10,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.vleal.ticketvr.api.CheckCard;
 import com.vleal.ticketvr.ui.CardFormat;
-import com.vleal.ticketvr.ui.MyListAdapter;
 
 public class ResultActivity extends Activity {
 
@@ -40,14 +35,16 @@ public class ResultActivity extends Activity {
 			JSONObject json      = new JSONObject(string);
 			JSONObject balance   = (JSONObject) json.get("balance");
 			JSONArray scheduling = (JSONArray)  json.get("scheduling");
-			JSONArray arrayList  = (JSONArray)  json.get("list");
-			
+			String token         = (String) json.get("token");
+
 			String value         = balance.getString("value");
 			String number        = balance.getString("number");
 			String date          = balance.getString("date");
+			ListView list        = (ListView) findViewById(R.id.list);
 			
 			TextView cardNumber  = (TextView) findViewById(R.id.cardNumber);
 			TextView money       = (TextView) findViewById(R.id.money);
+			ProgressBar loader   = (ProgressBar) findViewById(R.id.loader_list);
 			
 			cardNumber.setText("Cart‹o: "+ CardFormat.string(number));
 			money.setText("R$ "+ value);
@@ -71,28 +68,8 @@ public class ResultActivity extends Activity {
 				greenLine.setVisibility(View.VISIBLE);
 			}
 			
-			if (arrayList != null && arrayList.length() > 0) {
-				ListView list                  = (ListView) findViewById(R.id.list);
-				List<Map<String, ?>> lastTransactionsList = new ArrayList<Map<String , ?>>();
-				
-				for(int i = 0; i < arrayList.length(); i++) {
-					Map<String, String> map = new HashMap<String, String>();
-					JSONObject listItem     = arrayList.getJSONObject(i);
-			   		String itemValue        = listItem.optString("value");
-			   		String itemDate         = listItem.optString("date");
-			   		String itemDesc         = listItem.optString("description");
-			   		
-			   		map.put("value", "R$ " + itemValue);
-			   		map.put("date", itemDate);
-			   		map.put("description", Capitalize(itemDesc));
-			   		
-			   		lastTransactionsList.add(map);
-			  	}
-				
-				list.setAdapter(new MyListAdapter(this, lastTransactionsList, R.layout.list_item,
-						new String[] { "date", "value", "description" }, 
-						new int[]    { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription }));
-			}
+			CheckCard checkCard = new CheckCard(this);
+			checkCard.list(list, loader, number, token);
 			
 			setTitle(getString(R.string.your_balance) + " - " + date);
 			
@@ -100,19 +77,5 @@ public class ResultActivity extends Activity {
 			e1.printStackTrace();
 		}
 		
-	}
-
-	//Capitalize
-	public String Capitalize(String text) {
-		Locale l              = Locale.getDefault();
-		String[] textSplit    = text.toLowerCase(l).split(" ");
-		String textCaptalized = "";
-		
-		for(String w: textSplit) {
-			w = w.substring(0, 1).toUpperCase(l) + w.substring(1);
-			textCaptalized += " " + w;
-		}
-
-		return textCaptalized.trim().replaceAll("[-]$", "");
 	}
 }

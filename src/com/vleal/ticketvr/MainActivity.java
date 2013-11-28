@@ -9,6 +9,7 @@ import java.util.Map;
 import android.app.ActionBar;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -23,6 +24,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,6 +37,7 @@ import com.vleal.ticketvr.sqlite.helper.DatabaseHelper;
 import com.vleal.ticketvr.ui.AddCardDialog;
 import com.vleal.ticketvr.ui.CardFormat;
 import com.vleal.ticketvr.ui.CardListAdapter;
+import com.vleal.ticketvr.ui.TicketUI;
 import com.vleal.ticketvr.ui.ValidateInputLength;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -58,10 +61,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			@Override
 			public void onPageSelected(int position) {
 				actionBar.setSelectedNavigationItem(position);
-
-				if (position == 0) {
-					getCardsList();
-				}
 			}
 		});
 
@@ -102,12 +101,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 
 	@Override
-	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-	}
+	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
 
 	@Override
-	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-	}
+	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
 
 	
 	//Sections pager adapter
@@ -176,7 +173,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			checkBalance.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					String number = cardNumber.getText().toString();
+					String number       = cardNumber.getText().toString();
 					CheckCard checkCard = new CheckCard(v.getContext());
 					checkCard.balance(v, number);
 				}
@@ -194,6 +191,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_addcard, container, false);
+			getCardsList(rootView);
 			
 			return rootView;
 		}
@@ -207,11 +205,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 
 	
-	public void getCardsList() {
-		DatabaseHelper db   = new DatabaseHelper(this);
+	//Get all cards and fill the card list
+	public static void getCardsList(View rootView) {
+		DatabaseHelper db   = new DatabaseHelper(rootView.getContext());
 		List<Card> cards    = db.getAllCards();
-		LinearLayout noCard = (LinearLayout) findViewById(R.id.no_card);
-		ListView cardsList  = (ListView)     findViewById(R.id.cards_list);
+		LinearLayout noCard = (LinearLayout) rootView.findViewById(R.id.no_card);
+		ListView cardsList  = (ListView)     rootView.findViewById(R.id.cards_list);
+		
+		cardsList.setLongClickable(true);
 		
 		db.closeDB();
 		
@@ -222,35 +223,59 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		} else {
 			noCard.setVisibility(View.GONE);
 			cardsList.setVisibility(View.VISIBLE);
-
-			List<Map<String, ?>> cardListArray = new ArrayList<Map<String , ?>>();
 			
-			for(int i = 0; i < cards.size(); i++) {
-				Map<String, String> map = new HashMap<String, String>();
-				
-		   		String cardNumber = (String) cards.get(i).getCardNumber();
-		   		String cardName   = (String) cards.get(i).getCardName();
-		   		
-		   		map.put("cardNumber", CardFormat.string(cardNumber));
-		   		map.put("cardName", cardName);
-		   		
-		   		cardListArray.add(map);
-		  	}
-			
-			cardsList.setAdapter(new CardListAdapter(this, cardListArray, R.layout.card_list_item,
-				new String[] { "cardNumber", "cardName" }, 
-				new int[]    { R.id.card_number, R.id.card_name }));
-			
-			//on item click
-			cardsList.setOnItemClickListener(new OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
-					TextView cardNumberView = (TextView) view.findViewById(R.id.card_number);
-					String cardNumber       = (String)   cardNumberView.getText();
-					CheckCard checkCard     = new CheckCard(view.getContext());
-					checkCard.balance(cardNumberView, cardNumber);
-				}
-			});
+			fillCardsList(cards, cardsList, rootView.getContext());
 		}
+	}
+	
+	
+	//Fill the card list
+	public static void fillCardsList(List<Card> cards, ListView cardsList, final Context context) {
+		
+		List<Map<String, ?>> cardListArray = new ArrayList<Map<String , ?>>();
+		
+		for(int i = 0; i < cards.size(); i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			
+	   		String cardNumber = (String) cards.get(i).getCardNumber();
+	   		String cardName   = (String) cards.get(i).getCardName();
+	   		long id           = (long) cards.get(i).getId(); 
+	   		
+	   		map.put("id", ""+id);
+	   		map.put("cardNumber", CardFormat.string(cardNumber));
+	   		map.put("cardName", cardName);
+	   		
+	   		cardListArray.add(map);
+	  	}
+		
+		cardsList.setAdapter(new CardListAdapter(context, cardListArray, R.layout.card_list_item,
+			new String[] { "cardNumber", "cardName", "id" },  new int[] { R.id.card_number, R.id.card_name, R.id.card_id }));
+		
+		//on item click
+		cardsList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
+				TextView cardNumberView = (TextView) view.findViewById(R.id.card_number);
+				String cardNumber       = (String)   cardNumberView.getText();
+				CheckCard checkCard     = new CheckCard(view.getContext());
+				checkCard.balance(cardNumberView, cardNumber);
+			}
+		});
+
+		//on long click
+		cardsList.setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
+				TicketUI ui     = new TicketUI(context);
+				TextView cardId = (TextView) view.findViewById(R.id.card_id);
+				long idLong     = Long.parseLong(cardId.getText().toString());
+				
+				DatabaseHelper db = new DatabaseHelper(context);
+				db.deleteToDo(idLong);
+				ui.showToast("Cart‹o apagado: "+ cardId.getText());
+
+				return false;
+			}
+		});
 	}
 }

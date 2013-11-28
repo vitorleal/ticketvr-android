@@ -95,8 +95,17 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/greenLine" >
+        android:layout_below="@+id/greenLine"
+        android:visibility="gone" >
     </ListView>
 
+    <ProgressBar
+        android:id="@+id/loader_list"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/blueLine"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

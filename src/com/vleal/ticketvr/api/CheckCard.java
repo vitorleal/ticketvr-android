@@ -1,5 +1,12 @@
 package com.vleal.ticketvr.api;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,11 +15,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.vleal.ticketvr.R;
 import com.vleal.ticketvr.ResultActivity;
 import com.vleal.ticketvr.ui.CardFormat;
+import com.vleal.ticketvr.ui.MyListAdapter;
 import com.vleal.ticketvr.ui.TicketUI;
 
 public class CheckCard {
@@ -37,7 +47,7 @@ public class CheckCard {
 			
 		ui.hideKeyboard(view);
 			
-		TicketAPI.get(CardFormat.clean(cardNumber), null, new JsonHttpResponseHandler() {
+		TicketAPI.get(CardFormat.clean(cardNumber), "card", null, null, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject json) {
 				if (dialog.isShowing()) {
@@ -75,5 +85,76 @@ public class CheckCard {
 				ui.showToast(getContext().getString(R.string.connection_error));
 			}
 		});
+	}
+	
+	public void list(final ListView list, final ProgressBar loader, String cardNumber, String token) {
+		final TicketUI ui = new TicketUI(getContext());
+		
+		TicketAPI.get(CardFormat.clean(cardNumber), "listonly", token, null, new JsonHttpResponseHandler() {
+			@Override
+			public void onSuccess(JSONObject json) {
+				
+				loader.setVisibility(View.GONE);
+				list.setVisibility(View.VISIBLE);
+				
+			    try {
+					//if has list
+					if (json.has("list")) {
+						JSONArray arrayList = (JSONArray) json.get("list");
+						
+						if (arrayList != null && arrayList.length() > 0) {
+							List<Map<String, ?>> lastTransactionsList = new ArrayList<Map<String , ?>>();
+							
+							for(int i = 0; i < arrayList.length(); i++) {
+								Map<String, String> map = new HashMap<String, String>();
+								JSONObject listItem     = arrayList.getJSONObject(i);
+						   		String itemValue        = listItem.optString("value");
+						   		String itemDate         = listItem.optString("date");
+						   		String itemDesc         = listItem.optString("description");
+						   		
+						   		map.put("value", "R$ " + itemValue);
+						   		map.put("date", itemDate);
+						   		map.put("description", Capitalize(itemDesc));
+						   		
+						   		lastTransactionsList.add(map);
+						  	}
+							
+							list.setAdapter(new MyListAdapter(getContext(), lastTransactionsList, R.layout.list_item,
+									new String[] { "date", "value", "description" }, 
+									new int[]    { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription }));
+						}
+							
+					} else {
+						ui.showToast((String) json.get("error"));
+						loader.setVisibility(View.GONE);
+					}
+				} catch (JSONException e) {
+					ui.showToast(getContext().getString(R.string.connection_error));
+					loader.setVisibility(View.GONE);
+					e.printStackTrace();
+				}
+			}
+				
+			@Override
+			public void onFailure(Throwable e, JSONObject errorResponse) {
+				super.onFailure(e, errorResponse);
+				loader.setVisibility(View.VISIBLE);
+				ui.showToast(getContext().getString(R.string.connection_error));
+			}
+		});	
+	}
+	
+	//Capitalize
+	public String Capitalize(String text) {
+		Locale l              = Locale.getDefault();
+		String[] textSplit    = text.toLowerCase(l).split(" ");
+		String textCaptalized = "";
+			
+		for(String w: textSplit) {
+			w = w.substring(0, 1).toUpperCase(l) + w.substring(1);
+			textCaptalized += " " + w;
+		}
+
+		return textCaptalized.trim().replaceAll("[-]$", "");
 	}
 }

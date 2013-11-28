@@ -7,15 +7,35 @@
     android:background="@drawable/card_list_bg">
 
     <LinearLayout
-        android:layout_width="290dp"
-    	android:layout_height="160dp"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
         android:background="@drawable/card_list_item"
+        android:gravity="bottom"
+        android:orientation="vertical"
         android:paddingBottom="20dp"
-    	android:paddingLeft="40dp"
-    	android:paddingRight="20dp"
-    	android:paddingTop="20dp"
-    	android:orientation="vertical"
-    	android:gravity="bottom" >
+        android:paddingLeft="40dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|right"
+            android:layout_weight="0.74" >
+
+            <ImageView
+                android:id="@+id/edit_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_content_edit" />
+
+            <ImageView
+                android:id="@+id/delete_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_content_discard"
+                android:paddingLeft="8dp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/card_id"
@@ -41,7 +61,6 @@
             android:textColor="@color/main_red"
             android:textSize="21sp"
             android:textStyle="bold" />
-
     </LinearLayout>
 	
 </FrameLayout>

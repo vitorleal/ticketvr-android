@@ -24,9 +24,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -224,14 +224,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			noCard.setVisibility(View.GONE);
 			cardsList.setVisibility(View.VISIBLE);
 			
-			fillCardsList(cards, cardsList, rootView.getContext());
+			fillCardsList(cards, cardsList, rootView);
 		}
 	}
 	
 	
 	//Fill the card list
-	public static void fillCardsList(List<Card> cards, ListView cardsList, final Context context) {
-		
+	public static void fillCardsList(List<Card> cards, ListView cardsList, View view) {
+		final Context context              = (Context) view.getContext();
 		List<Map<String, ?>> cardListArray = new ArrayList<Map<String , ?>>();
 		
 		for(int i = 0; i < cards.size(); i++) {
@@ -259,22 +259,20 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				String cardNumber       = (String)   cardNumberView.getText();
 				CheckCard checkCard     = new CheckCard(view.getContext());
 				checkCard.balance(cardNumberView, cardNumber);
-			}
-		});
-
-		//on long click
-		cardsList.setOnItemLongClickListener(new OnItemLongClickListener() {
-			@Override
-			public boolean onItemLongClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
-				TicketUI ui     = new TicketUI(context);
-				TextView cardId = (TextView) view.findViewById(R.id.card_id);
-				long idLong     = Long.parseLong(cardId.getText().toString());
+				ImageView delete        = (ImageView) view.findViewById(R.id.delete_card);
 				
-				DatabaseHelper db = new DatabaseHelper(context);
-				db.deleteToDo(idLong);
-				ui.showToast("Cart‹o apagado: "+ cardId.getText());
-
-				return false;
+				delete.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						TicketUI ui     = new TicketUI(context);
+						TextView cardId = (TextView) v.findViewById(R.id.card_id);
+						long idLong     = Long.parseLong(cardId.getText().toString());
+						
+						DatabaseHelper db = new DatabaseHelper(context);
+						db.deleteToDo(idLong);
+						ui.showToast("Cart‹o apagado: "+ cardId.getText());
+					}
+				});
 			}
 		});
 	}

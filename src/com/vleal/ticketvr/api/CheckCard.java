@@ -22,8 +22,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.vleal.ticketvr.R;
 import com.vleal.ticketvr.ResultActivity;
 import com.vleal.ticketvr.ui.CardFormat;
-import com.vleal.ticketvr.ui.MyListAdapter;
 import com.vleal.ticketvr.ui.TicketUI;
+import com.vleal.ticketvr.ui.TransactionListAdapter;
 
 public class CheckCard {
 	private static Context context;
@@ -41,7 +41,7 @@ public class CheckCard {
 	}
 	
 	//Check card balance
-	public void balance(View view, String cardNumber) {
+	public void balance(View view, String cardNumber, final String cardId) {
 		final TicketUI ui           = new TicketUI(getContext());
 		final ProgressDialog dialog = ui.showLoader();
 			
@@ -62,15 +62,23 @@ public class CheckCard {
 							
 						Bundle bundle = new Bundle();
 						bundle.putString("json", json.toString());
+						bundle.putString("cardId", cardId);
 							
 						intent.putExtras(bundle);
 						getContext().startActivity(intent);
 							
 					} else {
-						ui.showToast((String) json.get("error"));
+						String error = (String) json.get("error");
+
+						if (cardId != null) {
+							TicketUI ui = new TicketUI(getContext());
+							ui.confirmDeleteCard(error, cardId);
+						} else {
+							TicketUI.showToast(error);
+						}
 					}
 				} catch (JSONException e) {
-					ui.showToast(getContext().getString(R.string.connection_error));
+					TicketUI.showToast(getContext().getString(R.string.connection_error));
 					e.printStackTrace();
 				}
 			}
@@ -82,14 +90,12 @@ public class CheckCard {
 				if (dialog.isShowing()) {
 					dialog.dismiss();
 				}
-				ui.showToast(getContext().getString(R.string.connection_error));
+				TicketUI.showToast(getContext().getString(R.string.connection_error));
 			}
 		});
 	}
 	
 	public void list(final ListView list, final ProgressBar loader, String cardNumber, String token) {
-		final TicketUI ui = new TicketUI(getContext());
-		
 		TicketAPI.get(CardFormat.clean(cardNumber), "listonly", token, null, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject json) {
@@ -119,17 +125,17 @@ public class CheckCard {
 						   		lastTransactionsList.add(map);
 						  	}
 							
-							list.setAdapter(new MyListAdapter(getContext(), lastTransactionsList, R.layout.list_item,
+							list.setAdapter(new TransactionListAdapter(getContext(), lastTransactionsList, R.layout.list_item,
 									new String[] { "date", "value", "description" }, 
 									new int[]    { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription }));
 						}
 							
 					} else {
-						ui.showToast((String) json.get("error"));
+						TicketUI.showToast((String) json.get("error"));
 						loader.setVisibility(View.GONE);
 					}
 				} catch (JSONException e) {
-					ui.showToast(getContext().getString(R.string.connection_error));
+					TicketUI.showToast(getContext().getString(R.string.connection_error));
 					loader.setVisibility(View.GONE);
 					e.printStackTrace();
 				}
@@ -139,7 +145,7 @@ public class CheckCard {
 			public void onFailure(Throwable e, JSONObject errorResponse) {
 				super.onFailure(e, errorResponse);
 				loader.setVisibility(View.VISIBLE);
-				ui.showToast(getContext().getString(R.string.connection_error));
+				TicketUI.showToast(getContext().getString(R.string.connection_error));
 			}
 		});	
 	}

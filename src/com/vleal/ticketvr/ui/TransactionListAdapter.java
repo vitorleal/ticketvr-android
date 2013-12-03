@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import com.vleal.ticketvr.R;
 
-public class MyListAdapter extends SimpleAdapter {
+public class TransactionListAdapter extends SimpleAdapter {
 	
 	private List<?> data;
 	
-	public MyListAdapter(Context context, List<Map<String, ?>> lastTransactionsList, int resource, String[] from, int[] to) {
+	public TransactionListAdapter(Context context, List<Map<String, ?>> lastTransactionsList, int resource, String[] from, int[] to) {
 		super(context, CreateList(lastTransactionsList), resource, from, to);
 		this.data = lastTransactionsList;
 	}
@@ -30,8 +30,9 @@ public class MyListAdapter extends SimpleAdapter {
 		TextView textView  = (TextView) view.findViewById(R.id.listItemValue);
 		String description = (String) ((Map<?, ?>) data.get(position)).get("description");
 		
-		if (description.matches("Disponib. De Credito ")) {
+		if (description.trim().matches("Disponib. De Credito")) {
 			textView.setTextColor(getGreenColor(view));
+			
 		} else {
 			textView.setTextColor(getRedColor(view));
 		}

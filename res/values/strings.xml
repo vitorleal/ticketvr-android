@@ -13,7 +13,7 @@
     <string name="loader_message">carregando</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="your_balance">Seu saldo</string>
+    <string name="your_balance">Saldo</string>
     <string name="next_deposit">Próximo depósito</string>
     <string name="connection_error">Erro ao conectar</string>
     <string name="loading">carregando…</string>
@@ -22,4 +22,8 @@
     <string name="cancel_card">Cancelar</string>
     <string name="save_card">Salvar</string>
     <string name="test_card">6033425792222272</string>
+    <string name="delete_card">Remover cartão</string>
+    <string name="edit_card">Editar cartão</string>
+    <string name="removed_card">Cartão apagado</string>
+    <string name="alert_remove_card">Deseja remover este cartão?</string>
 </resources>

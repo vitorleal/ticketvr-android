@@ -13,6 +13,12 @@
     	android:layout_alignParentTop="true"
     	android:background="@drawable/balance_box_blue" >
 
+	    <TextView
+	        android:id="@+id/card_id"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone" />
+
     	<TextView
         	android:id="@+id/money"
         	style="@style/BoxBlue"

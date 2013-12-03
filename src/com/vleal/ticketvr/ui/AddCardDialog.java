@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.vleal.ticketvr.MainActivity;
 import com.vleal.ticketvr.R;
 import com.vleal.ticketvr.model.Card;
 import com.vleal.ticketvr.sqlite.helper.DatabaseHelper;
@@ -21,7 +22,7 @@ public class AddCardDialog extends DialogFragment {
     }
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 		final Dialog dialog = getDialog();
 		final View view     = inflater.inflate(R.layout.fragment_dialog_addcard, container, false);
 		
@@ -48,6 +49,8 @@ public class AddCardDialog extends DialogFragment {
 			@Override
 			public void onClick(View v) {
 				SaveCard(numberCard.getText().toString(), nameCard.getText().toString());
+				MainActivity.getCardsList(view.getRootView().getRootView());
+				
 				dialog.dismiss();
 			}
 		});

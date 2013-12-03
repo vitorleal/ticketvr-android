@@ -26,7 +26,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,7 +36,6 @@ import com.vleal.ticketvr.sqlite.helper.DatabaseHelper;
 import com.vleal.ticketvr.ui.AddCardDialog;
 import com.vleal.ticketvr.ui.CardFormat;
 import com.vleal.ticketvr.ui.CardListAdapter;
-import com.vleal.ticketvr.ui.TicketUI;
 import com.vleal.ticketvr.ui.ValidateInputLength;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -86,10 +84,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				addNewCard(null);
 				return true;
 
-			case R.id.action_settings:
-				//showHelp();
-				return true;
-
 			default:
 				return super.onOptionsItemSelected(item);
 		}
@@ -127,6 +121,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			
 			Bundle args = new Bundle();
 			fragment.setArguments(args);
+			
 			return fragment;
 		}
 
@@ -175,7 +170,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				public void onClick(View v) {
 					String number       = cardNumber.getText().toString();
 					CheckCard checkCard = new CheckCard(v.getContext());
-					checkCard.balance(v, number);
+					checkCard.balance(v, number, null);
 				}
 			});
 			
@@ -212,8 +207,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		LinearLayout noCard = (LinearLayout) rootView.findViewById(R.id.no_card);
 		ListView cardsList  = (ListView)     rootView.findViewById(R.id.cards_list);
 		
-		cardsList.setLongClickable(true);
-		
 		db.closeDB();
 		
 		if (cards.isEmpty()) {
@@ -241,9 +234,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	   		String cardName   = (String) cards.get(i).getCardName();
 	   		long id           = (long) cards.get(i).getId(); 
 	   		
-	   		map.put("id", ""+id);
+	   		map.put("id",         String.valueOf(id));
 	   		map.put("cardNumber", CardFormat.string(cardNumber));
-	   		map.put("cardName", cardName);
+	   		map.put("cardName",   cardName);
 	   		
 	   		cardListArray.add(map);
 	  	}
@@ -257,22 +250,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
 				TextView cardNumberView = (TextView) view.findViewById(R.id.card_number);
 				String cardNumber       = (String)   cardNumberView.getText();
-				CheckCard checkCard     = new CheckCard(view.getContext());
-				checkCard.balance(cardNumberView, cardNumber);
-				ImageView delete        = (ImageView) view.findViewById(R.id.delete_card);
+				TextView cardIdView     = (TextView) view.findViewById(R.id.card_id);
+				String cardId           = (String) cardIdView.getText().toString();
 				
-				delete.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						TicketUI ui     = new TicketUI(context);
-						TextView cardId = (TextView) v.findViewById(R.id.card_id);
-						long idLong     = Long.parseLong(cardId.getText().toString());
-						
-						DatabaseHelper db = new DatabaseHelper(context);
-						db.deleteToDo(idLong);
-						ui.showToast("Cart‹o apagado: "+ cardId.getText());
-					}
-				});
+				CheckCard checkCard     = new CheckCard(view.getContext());
+				checkCard.balance(cardNumberView, cardNumber, cardId);
 			}
 		});
 	}

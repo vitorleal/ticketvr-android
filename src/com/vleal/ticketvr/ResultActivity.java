@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -15,8 +17,34 @@ import android.widget.TextView;
 
 import com.vleal.ticketvr.api.CheckCard;
 import com.vleal.ticketvr.ui.CardFormat;
+import com.vleal.ticketvr.ui.TicketUI;
 
 public class ResultActivity extends Activity {
+	
+	//Inflate the menu
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.result, menu);
+//		TextView cardId = (TextView) this.findViewById(R.id.card_id);
+//		
+//		if (cardId.getText() == "") {
+//			menu.findItem(R.id.action_add_card).setVisible(false);
+//		}
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.action_delete_card:
+	    	deleteCard();
+	        return true;
+	        
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +56,12 @@ public class ResultActivity extends Activity {
 		
 		setContentView(R.layout.activity_result);
 		
-		Bundle intent = getIntent().getExtras();
-		String string = intent.getString("json");
+		Bundle intent  = getIntent().getExtras();
+		String string  = intent.getString("json");
+		String cardId  = intent.getString("cardId");
+		TextView cardIdView = (TextView) findViewById(R.id.card_id);
+		
+		cardIdView.setText(cardId);
 		
 		try {
 			JSONObject json      = new JSONObject(string);
@@ -75,7 +107,16 @@ public class ResultActivity extends Activity {
 			
 		} catch (JSONException e1) {
 			e1.printStackTrace();
-		}
+		}	
+	}
+	
+	
+	//Delete card
+	public void deleteCard() {
+		TextView cardIdView = (TextView) findViewById(R.id.card_id);
+		String cardId       = (String) cardIdView.getText().toString();
+		TicketUI ui         = new TicketUI(this);
 		
+		ui.confirmDeleteCard(getString(R.string.delete_card), cardId);
 	}
 }

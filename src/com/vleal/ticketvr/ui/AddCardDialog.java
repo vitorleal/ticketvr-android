@@ -2,6 +2,8 @@ package com.vleal.ticketvr.ui;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,8 +51,13 @@ public class AddCardDialog extends DialogFragment {
 			@Override
 			public void onClick(View v) {
 				SaveCard(numberCard.getText().toString(), nameCard.getText().toString());
-				MainActivity.getCardsList(view.getRootView().getRootView());
 				
+				Context context = v.getContext();
+				Intent intent   = new Intent(context, MainActivity.class);
+				
+	        	intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+	        	context.startActivity(intent);
+	    		
 				dialog.dismiss();
 			}
 		});

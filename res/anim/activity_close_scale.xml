@@ -11,7 +11,7 @@
           android:duration="@android:integer/config_mediumAnimTime" />
 
     <alpha android:fromAlpha="1"
-          android:toAlpha="0.5"
+          android:toAlpha="0"
           android:duration="@android:integer/config_mediumAnimTime"/>
 
 </set>

@@ -175,9 +175,9 @@ public final class R {
     }
     public static final class style {
         public static final int ActionBar_Solid_Ticketvr=0x7f080004;
-        public static final int ActionBar_Transparent_Ticketvr=0x7f08000a;
-        public static final int ActionBarTabStyle_Ticketvr=0x7f08000d;
-        public static final int ActionButton_CloseMode_Ticketvr=0x7f080010;
+        public static final int ActionBar_Transparent_Ticketvr=0x7f08000b;
+        public static final int ActionBarTabStyle_Ticketvr=0x7f08000e;
+        public static final int ActionButton_CloseMode_Ticketvr=0x7f080011;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -204,19 +204,20 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
-        public static final int BoxBlue=0x7f080007;
-        public static final int BoxGreen=0x7f080006;
-        public static final int Button_Gray=0x7f080009;
-        public static final int Button_Main=0x7f080008;
-        public static final int DropDownListView_Ticketvr=0x7f08000c;
-        public static final int DropDownNav_Ticketvr=0x7f08000e;
+        public static final int BoxBlue=0x7f080008;
+        public static final int BoxGreen=0x7f080007;
+        public static final int Button_Gray=0x7f08000a;
+        public static final int Button_Main=0x7f080009;
+        public static final int DropDownListView_Ticketvr=0x7f08000d;
+        public static final int DropDownNav_Ticketvr=0x7f08000f;
         public static final int EditTextAppTheme=0x7f080003;
-        public static final int PopupMenu_Ticketvr=0x7f08000b;
-        public static final int ProgressBar_Ticketvr=0x7f08000f;
+        public static final int OverFlow=0x7f080005;
+        public static final int PopupMenu_Ticketvr=0x7f08000c;
+        public static final int ProgressBar_Ticketvr=0x7f080010;
         public static final int Theme_Ticketvr=0x7f080002;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Ticketvr_Widget=0x7f080011;
-        public static final int TitleTextStyle=0x7f080005;
+        public static final int Theme_Ticketvr_Widget=0x7f080012;
+        public static final int TitleTextStyle=0x7f080006;
     }
 }

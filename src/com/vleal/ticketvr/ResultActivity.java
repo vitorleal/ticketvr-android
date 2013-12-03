@@ -25,17 +25,19 @@ public class ResultActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.result, menu);
-//		TextView cardId = (TextView) this.findViewById(R.id.card_id);
-//		
-//		if (cardId.getText() == "") {
-//			menu.findItem(R.id.action_add_card).setVisible(false);
-//		}
+		
+		Bundle intent = getIntent().getExtras();
+		String cardId = intent.getString("cardId");
+		
+		if (cardId == null) {
+			menu.findItem(R.id.action_delete_card).setVisible(false);
+		}
+		
 		return true;
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.action_delete_card:
 	    	deleteCard();
@@ -57,9 +59,9 @@ public class ResultActivity extends Activity {
 		
 		setContentView(R.layout.activity_result);
 		
-		Bundle intent  = getIntent().getExtras();
-		String string  = intent.getString("json");
-		String cardId  = intent.getString("cardId");
+		Bundle intent       = getIntent().getExtras();
+		String string       = intent.getString("json");
+		String cardId       = intent.getString("cardId");
 		TextView cardIdView = (TextView) findViewById(R.id.card_id);
 		
 		cardIdView.setText(cardId);

@@ -42,7 +42,7 @@ public class TicketUI {
 	
 	// Toast
 	public static void showToast(String text) {
-		Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_LONG);
+		Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 		toast.show();
 	}

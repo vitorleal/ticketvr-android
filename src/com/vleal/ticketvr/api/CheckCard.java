@@ -73,6 +73,7 @@ public class CheckCard {
 						if (cardId != null) {
 							TicketUI ui = new TicketUI(getContext());
 							ui.confirmDeleteCard(error, cardId);
+							
 						} else {
 							TicketUI.showToast(error);
 						}
@@ -126,8 +127,8 @@ public class CheckCard {
 						  	}
 							
 							list.setAdapter(new TransactionListAdapter(getContext(), lastTransactionsList, R.layout.list_item,
-									new String[] { "date", "value", "description" }, 
-									new int[]    { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription }));
+								new String[] { "date", "value", "description" }, 
+								new int[]    { R.id.listItemDate, R.id.listItemValue , R.id.listItemDescription }));
 						}
 							
 					} else {

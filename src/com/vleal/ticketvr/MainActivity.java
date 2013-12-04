@@ -10,6 +10,7 @@ import android.app.ActionBar;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -46,7 +47,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		overridePendingTransition(R.anim.activity_open_scale,R.anim.activity_close_translate);
+		
+		Intent intent = getIntent();
+		if (!intent.hasExtra("removeCard")) {
+			overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_translate);
+		}
 
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

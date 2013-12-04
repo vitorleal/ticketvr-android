@@ -55,7 +55,7 @@ public class ResultActivity extends Activity {
 		final ActionBar actionBar = getActionBar();
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		overridePendingTransition(R.anim.activity_open_translate,R.anim.activity_close_scale);
+		overridePendingTransition(R.anim.activity_open_translate, R.anim.activity_close_scale);
 		
 		setContentView(R.layout.activity_result);
 		

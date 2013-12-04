@@ -31,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.vleal.ticketvr.api.CheckCard;
 import com.vleal.ticketvr.model.Card;
 import com.vleal.ticketvr.sqlite.helper.DatabaseHelper;
@@ -42,7 +43,7 @@ import com.vleal.ticketvr.ui.ValidateInputLength;
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -263,5 +264,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				checkCard.balance(cardNumberView, cardNumber, cardId);
 			}
 		});
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStop(this);
 	}
 }

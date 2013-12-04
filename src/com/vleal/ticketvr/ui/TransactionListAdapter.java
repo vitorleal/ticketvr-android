@@ -32,7 +32,6 @@ public class TransactionListAdapter extends SimpleAdapter {
 		String description = (String) ((Map<?, ?>) data.get(position)).get("description");
 		
 		if (description.trim().matches("Disponib. De Credito")) {
-			Log.i("id", description);
 			textView.setTextColor(getGreenColor(view));
 			
 		} else {

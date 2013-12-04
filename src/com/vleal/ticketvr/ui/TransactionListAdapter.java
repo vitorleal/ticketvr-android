@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SimpleAdapter;
@@ -31,13 +32,14 @@ public class TransactionListAdapter extends SimpleAdapter {
 		String description = (String) ((Map<?, ?>) data.get(position)).get("description");
 		
 		if (description.trim().matches("Disponib. De Credito")) {
+			Log.i("id", description);
 			textView.setTextColor(getGreenColor(view));
 			
 		} else {
 			textView.setTextColor(getRedColor(view));
 		}
 		
-		return super.getView(position, convertView, parent);
+		return view;
 	}
 
 	private int getGreenColor(View view) {

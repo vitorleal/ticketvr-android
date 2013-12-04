@@ -49,7 +49,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		setContentView(R.layout.activity_main);
 		
 		Intent intent = getIntent();
-		if (!intent.hasExtra("removeCard")) {
+		if (!intent.hasExtra("card")) {
 			overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_translate);
 		}
 

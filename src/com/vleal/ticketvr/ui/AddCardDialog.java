@@ -56,6 +56,7 @@ public class AddCardDialog extends DialogFragment {
 				Intent intent   = new Intent(context, MainActivity.class);
 				
 	        	intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+	        	intent.putExtra("card", true);
 	        	context.startActivity(intent);
 	    		
 				dialog.dismiss();

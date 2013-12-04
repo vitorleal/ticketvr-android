@@ -25,7 +25,7 @@
         	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	android:layout_marginTop="28dp"
-        	android:text="@string/lorem_ipsum"
+        	android:text=""
         	android:gravity="center"
         	android:textSize="30sp" />
 
@@ -35,7 +35,7 @@
         	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	android:gravity="center"
-        	android:text="@string/lorem_ipsum"
+        	android:text=""
         	android:textSize="18sp" />
 	</FrameLayout>
 	
@@ -74,7 +74,7 @@
             android:layout_marginTop="26dp"
             android:gravity="center"
             android:textSize="18sp"
-            android:text="@string/lorem_ipsum" />
+            android:text="" />
         
         <TextView
             android:id="@+id/valueDeposit"
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:text="@string/lorem_ipsum"
+            android:text=""
             android:textSize="30sp" />
 
     </FrameLayout>

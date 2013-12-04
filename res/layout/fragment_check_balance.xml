@@ -28,7 +28,7 @@
         android:inputType="number"
         android:maxLength="16"
         android:singleLine="true"
-        android:text="@string/test_card" />
+        android:text="" />
 
     <Button
         android:id="@+id/checkButton"

@@ -73,7 +73,7 @@ public class TicketUI {
 	    		
 	        	Intent intent = new Intent(context, MainActivity.class);
 	        	intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-	        	intent.putExtra("removeCard", true);
+	        	intent.putExtra("card", true);
 	    		context.startActivity(intent);
 	        }
 	     });

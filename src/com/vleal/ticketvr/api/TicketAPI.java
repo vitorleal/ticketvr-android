@@ -5,7 +5,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class TicketAPI {
-	private static final String BASE_URL  = "http://ticketvr.herokuapp.com/";
+	private static final String BASE_URL  = "http://api.ticketvrapp.com/";
 	private static AsyncHttpClient client = new AsyncHttpClient();
 
 	public static void get(String card, String type, String token, RequestParams params, AsyncHttpResponseHandler responseHandler) {

@@ -115,9 +115,9 @@ public class CheckCard {
 							for(int i = 0; i < arrayList.length(); i++) {
 								Map<String, String> map = new HashMap<String, String>();
 								JSONObject listItem     = arrayList.getJSONObject(i);
-						   		String itemValue        = listItem.optString("value");
-						   		String itemDate         = listItem.optString("date");
-						   		String itemDesc         = listItem.optString("description");
+						   		String itemValue        = listItem.getString("value");
+						   		String itemDate         = listItem.getString("date");
+						   		String itemDesc         = listItem.getString("description");
 						   		
 						   		map.put("value", "R$ " + itemValue);
 						   		map.put("date", itemDate);
@@ -132,7 +132,15 @@ public class CheckCard {
 						}
 							
 					} else {
-						TicketUI.showToast((String) json.get("error"));
+						String errorText;
+						
+						if (json.get("error") != null && json.get("error") instanceof String) {
+							errorText = (String) json.get("error");
+						} else {
+							errorText = getContext().getString(R.string.connection_error);
+						}
+						
+						TicketUI.showToast(errorText);
 						loader.setVisibility(View.GONE);
 					}
 				} catch (JSONException e) {
@@ -153,15 +161,21 @@ public class CheckCard {
 	
 	//Capitalize
 	public String Capitalize(String text) {
-		Locale l              = Locale.getDefault();
-		String[] textSplit    = text.toLowerCase(l).split(" ");
-		String textCaptalized = "";
-			
-		for(String w: textSplit) {
-			w = w.substring(0, 1).toUpperCase(l) + w.substring(1);
-			textCaptalized += " " + w;
-		}
 
-		return textCaptalized.trim().replaceAll("[-]$", "");
+		if (text != null && text.length() > 0) {
+			Locale l              = Locale.getDefault();
+			String[] textSplit    = text.toLowerCase(l).split(" ");
+			String textCaptalized = "";
+			
+			for(String w: textSplit) {
+				w = w.substring(0, 1).toUpperCase(l) + w.substring(1);
+				textCaptalized += " " + w;
+			}
+		
+			return textCaptalized.trim().replaceAll("[-]$", "");
+			
+		} else {
+			return text;
+		}
 	}
 }

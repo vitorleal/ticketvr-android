@@ -3,7 +3,6 @@ package com.vleal.ticketvr.api;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -83,7 +82,7 @@ public class CheckCard {
 					e.printStackTrace();
 				}
 			}
-				
+
 			@Override
 			public void onFailure(Throwable e, JSONObject errorResponse) {
 				super.onFailure(e, errorResponse);
@@ -121,7 +120,7 @@ public class CheckCard {
 						   		
 						   		map.put("value", "R$ " + itemValue);
 						   		map.put("date", itemDate);
-						   		map.put("description", Capitalize(itemDesc));
+						   		map.put("description", itemDesc);
 						   		
 						   		lastTransactionsList.add(map);
 						  	}
@@ -158,24 +157,5 @@ public class CheckCard {
 			}
 		});	
 	}
-	
-	//Capitalize
-	public String Capitalize(String text) {
 
-		if (text != null && text.length() > 0) {
-			Locale l              = Locale.getDefault();
-			String[] textSplit    = text.toLowerCase(l).split(" ");
-			String textCaptalized = "";
-			
-			for(String w: textSplit) {
-				w = w.substring(0, 1).toUpperCase(l) + w.substring(1);
-				textCaptalized += " " + w;
-			}
-		
-			return textCaptalized.trim().replaceAll("[-]$", "");
-			
-		} else {
-			return text;
-		}
-	}
 }

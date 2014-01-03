@@ -152,8 +152,9 @@ public class CheckCard {
 			@Override
 			public void onFailure(Throwable e, JSONObject errorResponse) {
 				super.onFailure(e, errorResponse);
-				loader.setVisibility(View.GONE);
+				
 				TicketUI.showToast(getContext().getString(R.string.connection_error));
+				loader.setVisibility(View.GONE);
 			}
 		});	
 	}

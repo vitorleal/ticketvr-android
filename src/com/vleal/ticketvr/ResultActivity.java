@@ -68,17 +68,17 @@ public class ResultActivity extends Activity {
 		
 		try {
 			JSONObject json      = new JSONObject(string);
-			JSONObject balance   = (JSONObject) json.get("balance");
-			JSONArray scheduling = (JSONArray)  json.get("scheduling");
-			String token         = (String) json.get("token");
+			JSONObject balance   = json.getJSONObject("balance");
+			JSONArray scheduling = json.getJSONArray("scheduling");
+			String token         = json.getString("token");
 
 			String value         = balance.getString("value");
 			String number        = balance.getString("number");
 			String date          = balance.getString("date");
 			ListView list        = (ListView) findViewById(R.id.list);
 			
-			TextView cardNumber  = (TextView) findViewById(R.id.cardNumber);
-			TextView money       = (TextView) findViewById(R.id.money);
+			TextView cardNumber  = (TextView)    findViewById(R.id.cardNumber);
+			TextView money       = (TextView)    findViewById(R.id.money);
 			ProgressBar loader   = (ProgressBar) findViewById(R.id.loader_list);
 			
 			cardNumber.setText("Cart‹o: "+ CardFormat.string(number));

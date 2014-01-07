@@ -5,7 +5,10 @@ This is the source code of the [TicketVR Android APP](https://play.google.com/st
 #Visit the website
 http://ticketvrapp.com
 
-## Author
+##Author
 | [![twitter/vitorleal](http://gravatar.com/avatar/e133221d7fbc0dee159dca127d2f6f00?s=80)](http://twitter.com/vitorleal "Follow @vitorleal on Twitter") |
 |---|
 | [Vitor Leal](http://vitorleal.com) |
+
+##License
+[LICENSE.txt](https://github.com/vitorleal/ticketvr-android/blob/master/LICENSE.txt)

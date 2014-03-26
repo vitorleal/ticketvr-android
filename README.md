@@ -1,5 +1,7 @@
 #Ticketvr for Android ![Tickte-Endered Idiots](http://img.shields.io/badge/ticket/endered-idiots-red.svg)
 
+##This app was shutdown by Ticket, becouse they cant build an app for their service and don't want anyone to do it in just 4 days.
+
 This is the source code of the [TicketVR Android APP](https://play.google.com/store/apps/details?id=com.vleal.ticketvr)
 
 #Visit the website

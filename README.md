@@ -1,4 +1,4 @@
-#Ticketvr for Android [!Tickte-Endered Idiots](http://img.shields.io/badge/ticket/endered-idiots-red.svg)
+#Ticketvr for Android [![Tickte-Endered Idiots](http://img.shields.io/badge/ticket/endered-idiots-red.svg)
 
 This is the source code of the [TicketVR Android APP](https://play.google.com/store/apps/details?id=com.vleal.ticketvr)
 

@@ -1,6 +1,6 @@
 #Ticketvr for Android ![Tickte-Endered Idiots](http://img.shields.io/badge/ticket/endered-idiots-red.svg)
 
-###This app was shutdown by Ticket, becouse they cant build an app for their service and don't want anyone to do it in just 4 days.
+###This app was shutdown by Ticket, because they can't build an app for their service and don't want anyone to do it in just 4 days.
 
 
 #Visit the website
